@@ -1,0 +1,51 @@
+int a = 9;
+int b = 10;
+int c;
+c = a + b;
+int d = c + a;
+
+string s = "hola";
+string l = "carlos";
+string g = s + l;
+
+float f = 1.0;
+float k = 10.8;
+float i;
+i = f + k;
+float u = i + f;
+
+float test1 = 1 + 2.0;
+int test2 = 1 + 2.0;
+
+if (true) {
+	float i = 1.9;
+	string carlos = "ola";
+	if (9 < 4) {
+		carlos = "carlos";
+	} elif (carlos == "ola") {
+		carlos = "lopez";
+	} else {
+		carlos = "solano";
+	}
+	do {
+		float l = 1.6;
+	} while (true);
+}
+
+while (true) {
+	float j = 1.8;
+	for (int i = 0; i < 69; i = i + a) {
+		float k = 1.7;
+	}
+	if (9 < 4) {
+		carlos = "carlos";
+	}
+}
+
+for (int i = 0; i < 69; i = i + a) {
+	float k = 1.7;
+}
+
+do {
+	float l = 1.6;
+} while (true);
