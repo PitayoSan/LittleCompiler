@@ -1,0 +1,2869 @@
+Created by PLY version 3.11 (http://www.dabeaz.com/ply)
+
+Grammar
+
+Rule 0     S' -> block
+Rule 1     block -> stmt ; block
+Rule 2     block -> stmt ;
+Rule 3     block -> loop block
+Rule 4     block -> cond block
+Rule 5     block -> loop
+Rule 6     block -> cond
+Rule 7     stmt -> ID = expr
+Rule 8     stmt -> expr
+Rule 9     stmt -> decl
+Rule 10    expr -> strexpr
+Rule 11    expr -> numexpr
+Rule 12    expr -> boolexpr
+Rule 13    strexpr -> strexpr + strexpr
+Rule 14    strexpr -> SCONST
+Rule 15    strexpr -> ID
+Rule 16    numexpr -> number
+Rule 17    numexpr -> numexpr + numexpr
+Rule 18    numexpr -> numexpr - numexpr
+Rule 19    numexpr -> numexpr * numexpr
+Rule 20    numexpr -> numexpr / numexpr
+Rule 21    numexpr -> numexpr ^ numexpr
+Rule 22    number -> ICONST
+Rule 23    number -> FCONST
+Rule 24    number -> ID
+Rule 25    boolexpr -> boolval
+Rule 26    boolexpr -> boolcomp
+Rule 27    boolexpr -> boolexpr AND boolexpr
+Rule 28    boolexpr -> boolexpr OR boolexpr
+Rule 29    boolexpr -> ( boolexpr AND boolexpr )
+Rule 30    boolexpr -> ( boolexpr OR boolexpr )
+Rule 31    boolval -> ID
+Rule 32    boolval -> TRUE
+Rule 33    boolval -> FALSE
+Rule 34    boolcomp -> number EQUAL number
+Rule 35    boolcomp -> number NEQUAL number
+Rule 36    boolcomp -> number > number
+Rule 37    boolcomp -> number < number
+Rule 38    boolcomp -> number LEQT number
+Rule 39    boolcomp -> number MEQT number
+Rule 40    boolcomp -> strexpr EQUAL strexpr
+Rule 41    boolcomp -> strexpr NEQUAL strexpr
+Rule 42    decl -> numdecl
+Rule 43    decl -> strdecl
+Rule 44    decl -> booldecl
+Rule 45    numdecl -> INT ID
+Rule 46    numdecl -> FLOAT ID
+Rule 47    numdecl -> INT ID = numexpr
+Rule 48    numdecl -> FLOAT ID = numexpr
+Rule 49    strdecl -> STRING ID
+Rule 50    strdecl -> STRING ID = strexpr
+Rule 51    booldecl -> BOOLEAN ID
+Rule 52    booldecl -> BOOLEAN ID = boolexpr
+Rule 53    cond -> IF boolblock braceb
+Rule 54    cond -> IF boolblock braceb ELSE braceb
+Rule 55    cond -> IF boolblock braceb condelif ELSE braceb
+Rule 56    condelif -> ELIF boolblock braceb
+Rule 57    condelif -> ELIF boolblock braceb condelif
+Rule 58    boolblock -> ( boolexpr )
+Rule 59    braceb -> { block }
+Rule 60    loop -> forctrl
+Rule 61    loop -> whilectrl
+Rule 62    loop -> dowhilectrl
+Rule 63    forctrl -> FOR forcond braceb
+Rule 64    forcond -> ( stmt ; stmt ; stmt )
+Rule 65    whilectrl -> WHILE boolblock braceb
+Rule 66    dowhilectrl -> DO braceb WHILE boolblock ;
+
+Terminals, with rules where they appear
+
+(                    : 29 30 58 64
+)                    : 29 30 58 64
+*                    : 19
++                    : 13 17
+-                    : 18
+/                    : 20
+;                    : 1 2 64 64 66
+<                    : 37
+=                    : 7 47 48 50 52
+>                    : 36
+AND                  : 27 29
+BOOLEAN              : 51 52
+DO                   : 66
+ELIF                 : 56 57
+ELSE                 : 54 55
+EQUAL                : 34 40
+FALSE                : 33
+FCONST               : 23
+FLOAT                : 46 48
+FOR                  : 63
+ICONST               : 22
+ID                   : 7 15 24 31 45 46 47 48 49 50 51 52
+IF                   : 53 54 55
+INT                  : 45 47
+LEQT                 : 38
+MEQT                 : 39
+NEQUAL               : 35 41
+OR                   : 28 30
+SCONST               : 14
+STRING               : 49 50
+TRUE                 : 32
+WHILE                : 65 66
+^                    : 21
+error                : 
+{                    : 59
+}                    : 59
+
+Nonterminals, with rules where they appear
+
+block                : 1 3 4 59 0
+boolblock            : 53 54 55 56 57 65 66
+boolcomp             : 26
+booldecl             : 44
+boolexpr             : 12 27 27 28 28 29 29 30 30 52 58
+boolval              : 25
+braceb               : 53 54 54 55 55 56 57 63 65 66
+cond                 : 4 6
+condelif             : 55 57
+decl                 : 9
+dowhilectrl          : 62
+expr                 : 7 8
+forcond              : 63
+forctrl              : 60
+loop                 : 3 5
+number               : 16 34 34 35 35 36 36 37 37 38 38 39 39
+numdecl              : 42
+numexpr              : 11 17 17 18 18 19 19 20 20 21 21 47 48
+stmt                 : 1 2 64 64 64
+strdecl              : 43
+strexpr              : 10 13 13 40 40 41 41 50
+whilectrl            : 61
+
+Parsing method: LALR
+
+state 0
+
+    (0) S' -> . block
+    (1) block -> . stmt ; block
+    (2) block -> . stmt ;
+    (3) block -> . loop block
+    (4) block -> . cond block
+    (5) block -> . loop
+    (6) block -> . cond
+    (7) stmt -> . ID = expr
+    (8) stmt -> . expr
+    (9) stmt -> . decl
+    (60) loop -> . forctrl
+    (61) loop -> . whilectrl
+    (62) loop -> . dowhilectrl
+    (53) cond -> . IF boolblock braceb
+    (54) cond -> . IF boolblock braceb ELSE braceb
+    (55) cond -> . IF boolblock braceb condelif ELSE braceb
+    (10) expr -> . strexpr
+    (11) expr -> . numexpr
+    (12) expr -> . boolexpr
+    (42) decl -> . numdecl
+    (43) decl -> . strdecl
+    (44) decl -> . booldecl
+    (63) forctrl -> . FOR forcond braceb
+    (65) whilectrl -> . WHILE boolblock braceb
+    (66) dowhilectrl -> . DO braceb WHILE boolblock ;
+    (13) strexpr -> . strexpr + strexpr
+    (14) strexpr -> . SCONST
+    (15) strexpr -> . ID
+    (16) numexpr -> . number
+    (17) numexpr -> . numexpr + numexpr
+    (18) numexpr -> . numexpr - numexpr
+    (19) numexpr -> . numexpr * numexpr
+    (20) numexpr -> . numexpr / numexpr
+    (21) numexpr -> . numexpr ^ numexpr
+    (25) boolexpr -> . boolval
+    (26) boolexpr -> . boolcomp
+    (27) boolexpr -> . boolexpr AND boolexpr
+    (28) boolexpr -> . boolexpr OR boolexpr
+    (29) boolexpr -> . ( boolexpr AND boolexpr )
+    (30) boolexpr -> . ( boolexpr OR boolexpr )
+    (45) numdecl -> . INT ID
+    (46) numdecl -> . FLOAT ID
+    (47) numdecl -> . INT ID = numexpr
+    (48) numdecl -> . FLOAT ID = numexpr
+    (49) strdecl -> . STRING ID
+    (50) strdecl -> . STRING ID = strexpr
+    (51) booldecl -> . BOOLEAN ID
+    (52) booldecl -> . BOOLEAN ID = boolexpr
+    (22) number -> . ICONST
+    (23) number -> . FCONST
+    (24) number -> . ID
+    (31) boolval -> . ID
+    (32) boolval -> . TRUE
+    (33) boolval -> . FALSE
+    (34) boolcomp -> . number EQUAL number
+    (35) boolcomp -> . number NEQUAL number
+    (36) boolcomp -> . number > number
+    (37) boolcomp -> . number < number
+    (38) boolcomp -> . number LEQT number
+    (39) boolcomp -> . number MEQT number
+    (40) boolcomp -> . strexpr EQUAL strexpr
+    (41) boolcomp -> . strexpr NEQUAL strexpr
+
+    ID              shift and go to state 5
+    IF              shift and go to state 11
+    FOR             shift and go to state 18
+    WHILE           shift and go to state 19
+    DO              shift and go to state 20
+    SCONST          shift and go to state 21
+    (               shift and go to state 25
+    INT             shift and go to state 26
+    FLOAT           shift and go to state 27
+    STRING          shift and go to state 28
+    BOOLEAN         shift and go to state 29
+    ICONST          shift and go to state 30
+    FCONST          shift and go to state 31
+    TRUE            shift and go to state 32
+    FALSE           shift and go to state 33
+
+    block                          shift and go to state 1
+    stmt                           shift and go to state 2
+    loop                           shift and go to state 3
+    cond                           shift and go to state 4
+    expr                           shift and go to state 6
+    decl                           shift and go to state 7
+    forctrl                        shift and go to state 8
+    whilectrl                      shift and go to state 9
+    dowhilectrl                    shift and go to state 10
+    strexpr                        shift and go to state 12
+    numexpr                        shift and go to state 13
+    boolexpr                       shift and go to state 14
+    numdecl                        shift and go to state 15
+    strdecl                        shift and go to state 16
+    booldecl                       shift and go to state 17
+    number                         shift and go to state 22
+    boolval                        shift and go to state 23
+    boolcomp                       shift and go to state 24
+
+state 1
+
+    (0) S' -> block .
+
+
+
+state 2
+
+    (1) block -> stmt . ; block
+    (2) block -> stmt . ;
+
+    ;               shift and go to state 34
+
+
+state 3
+
+    (3) block -> loop . block
+    (5) block -> loop .
+    (1) block -> . stmt ; block
+    (2) block -> . stmt ;
+    (3) block -> . loop block
+    (4) block -> . cond block
+    (5) block -> . loop
+    (6) block -> . cond
+    (7) stmt -> . ID = expr
+    (8) stmt -> . expr
+    (9) stmt -> . decl
+    (60) loop -> . forctrl
+    (61) loop -> . whilectrl
+    (62) loop -> . dowhilectrl
+    (53) cond -> . IF boolblock braceb
+    (54) cond -> . IF boolblock braceb ELSE braceb
+    (55) cond -> . IF boolblock braceb condelif ELSE braceb
+    (10) expr -> . strexpr
+    (11) expr -> . numexpr
+    (12) expr -> . boolexpr
+    (42) decl -> . numdecl
+    (43) decl -> . strdecl
+    (44) decl -> . booldecl
+    (63) forctrl -> . FOR forcond braceb
+    (65) whilectrl -> . WHILE boolblock braceb
+    (66) dowhilectrl -> . DO braceb WHILE boolblock ;
+    (13) strexpr -> . strexpr + strexpr
+    (14) strexpr -> . SCONST
+    (15) strexpr -> . ID
+    (16) numexpr -> . number
+    (17) numexpr -> . numexpr + numexpr
+    (18) numexpr -> . numexpr - numexpr
+    (19) numexpr -> . numexpr * numexpr
+    (20) numexpr -> . numexpr / numexpr
+    (21) numexpr -> . numexpr ^ numexpr
+    (25) boolexpr -> . boolval
+    (26) boolexpr -> . boolcomp
+    (27) boolexpr -> . boolexpr AND boolexpr
+    (28) boolexpr -> . boolexpr OR boolexpr
+    (29) boolexpr -> . ( boolexpr AND boolexpr )
+    (30) boolexpr -> . ( boolexpr OR boolexpr )
+    (45) numdecl -> . INT ID
+    (46) numdecl -> . FLOAT ID
+    (47) numdecl -> . INT ID = numexpr
+    (48) numdecl -> . FLOAT ID = numexpr
+    (49) strdecl -> . STRING ID
+    (50) strdecl -> . STRING ID = strexpr
+    (51) booldecl -> . BOOLEAN ID
+    (52) booldecl -> . BOOLEAN ID = boolexpr
+    (22) number -> . ICONST
+    (23) number -> . FCONST
+    (24) number -> . ID
+    (31) boolval -> . ID
+    (32) boolval -> . TRUE
+    (33) boolval -> . FALSE
+    (34) boolcomp -> . number EQUAL number
+    (35) boolcomp -> . number NEQUAL number
+    (36) boolcomp -> . number > number
+    (37) boolcomp -> . number < number
+    (38) boolcomp -> . number LEQT number
+    (39) boolcomp -> . number MEQT number
+    (40) boolcomp -> . strexpr EQUAL strexpr
+    (41) boolcomp -> . strexpr NEQUAL strexpr
+
+    $end            reduce using rule 5 (block -> loop .)
+    }               reduce using rule 5 (block -> loop .)
+    ID              shift and go to state 5
+    IF              shift and go to state 11
+    FOR             shift and go to state 18
+    WHILE           shift and go to state 19
+    DO              shift and go to state 20
+    SCONST          shift and go to state 21
+    (               shift and go to state 25
+    INT             shift and go to state 26
+    FLOAT           shift and go to state 27
+    STRING          shift and go to state 28
+    BOOLEAN         shift and go to state 29
+    ICONST          shift and go to state 30
+    FCONST          shift and go to state 31
+    TRUE            shift and go to state 32
+    FALSE           shift and go to state 33
+
+    loop                           shift and go to state 3
+    block                          shift and go to state 35
+    stmt                           shift and go to state 2
+    cond                           shift and go to state 4
+    expr                           shift and go to state 6
+    decl                           shift and go to state 7
+    forctrl                        shift and go to state 8
+    whilectrl                      shift and go to state 9
+    dowhilectrl                    shift and go to state 10
+    strexpr                        shift and go to state 12
+    numexpr                        shift and go to state 13
+    boolexpr                       shift and go to state 14
+    numdecl                        shift and go to state 15
+    strdecl                        shift and go to state 16
+    booldecl                       shift and go to state 17
+    number                         shift and go to state 22
+    boolval                        shift and go to state 23
+    boolcomp                       shift and go to state 24
+
+state 4
+
+    (4) block -> cond . block
+    (6) block -> cond .
+    (1) block -> . stmt ; block
+    (2) block -> . stmt ;
+    (3) block -> . loop block
+    (4) block -> . cond block
+    (5) block -> . loop
+    (6) block -> . cond
+    (7) stmt -> . ID = expr
+    (8) stmt -> . expr
+    (9) stmt -> . decl
+    (60) loop -> . forctrl
+    (61) loop -> . whilectrl
+    (62) loop -> . dowhilectrl
+    (53) cond -> . IF boolblock braceb
+    (54) cond -> . IF boolblock braceb ELSE braceb
+    (55) cond -> . IF boolblock braceb condelif ELSE braceb
+    (10) expr -> . strexpr
+    (11) expr -> . numexpr
+    (12) expr -> . boolexpr
+    (42) decl -> . numdecl
+    (43) decl -> . strdecl
+    (44) decl -> . booldecl
+    (63) forctrl -> . FOR forcond braceb
+    (65) whilectrl -> . WHILE boolblock braceb
+    (66) dowhilectrl -> . DO braceb WHILE boolblock ;
+    (13) strexpr -> . strexpr + strexpr
+    (14) strexpr -> . SCONST
+    (15) strexpr -> . ID
+    (16) numexpr -> . number
+    (17) numexpr -> . numexpr + numexpr
+    (18) numexpr -> . numexpr - numexpr
+    (19) numexpr -> . numexpr * numexpr
+    (20) numexpr -> . numexpr / numexpr
+    (21) numexpr -> . numexpr ^ numexpr
+    (25) boolexpr -> . boolval
+    (26) boolexpr -> . boolcomp
+    (27) boolexpr -> . boolexpr AND boolexpr
+    (28) boolexpr -> . boolexpr OR boolexpr
+    (29) boolexpr -> . ( boolexpr AND boolexpr )
+    (30) boolexpr -> . ( boolexpr OR boolexpr )
+    (45) numdecl -> . INT ID
+    (46) numdecl -> . FLOAT ID
+    (47) numdecl -> . INT ID = numexpr
+    (48) numdecl -> . FLOAT ID = numexpr
+    (49) strdecl -> . STRING ID
+    (50) strdecl -> . STRING ID = strexpr
+    (51) booldecl -> . BOOLEAN ID
+    (52) booldecl -> . BOOLEAN ID = boolexpr
+    (22) number -> . ICONST
+    (23) number -> . FCONST
+    (24) number -> . ID
+    (31) boolval -> . ID
+    (32) boolval -> . TRUE
+    (33) boolval -> . FALSE
+    (34) boolcomp -> . number EQUAL number
+    (35) boolcomp -> . number NEQUAL number
+    (36) boolcomp -> . number > number
+    (37) boolcomp -> . number < number
+    (38) boolcomp -> . number LEQT number
+    (39) boolcomp -> . number MEQT number
+    (40) boolcomp -> . strexpr EQUAL strexpr
+    (41) boolcomp -> . strexpr NEQUAL strexpr
+
+    $end            reduce using rule 6 (block -> cond .)
+    }               reduce using rule 6 (block -> cond .)
+    ID              shift and go to state 5
+    IF              shift and go to state 11
+    FOR             shift and go to state 18
+    WHILE           shift and go to state 19
+    DO              shift and go to state 20
+    SCONST          shift and go to state 21
+    (               shift and go to state 25
+    INT             shift and go to state 26
+    FLOAT           shift and go to state 27
+    STRING          shift and go to state 28
+    BOOLEAN         shift and go to state 29
+    ICONST          shift and go to state 30
+    FCONST          shift and go to state 31
+    TRUE            shift and go to state 32
+    FALSE           shift and go to state 33
+
+    cond                           shift and go to state 4
+    block                          shift and go to state 36
+    stmt                           shift and go to state 2
+    loop                           shift and go to state 3
+    expr                           shift and go to state 6
+    decl                           shift and go to state 7
+    forctrl                        shift and go to state 8
+    whilectrl                      shift and go to state 9
+    dowhilectrl                    shift and go to state 10
+    strexpr                        shift and go to state 12
+    numexpr                        shift and go to state 13
+    boolexpr                       shift and go to state 14
+    numdecl                        shift and go to state 15
+    strdecl                        shift and go to state 16
+    booldecl                       shift and go to state 17
+    number                         shift and go to state 22
+    boolval                        shift and go to state 23
+    boolcomp                       shift and go to state 24
+
+state 5
+
+    (7) stmt -> ID . = expr
+    (15) strexpr -> ID .
+    (24) number -> ID .
+    (31) boolval -> ID .
+
+  ! reduce/reduce conflict for EQUAL resolved using rule 15 (strexpr -> ID .)
+  ! reduce/reduce conflict for NEQUAL resolved using rule 15 (strexpr -> ID .)
+  ! reduce/reduce conflict for + resolved using rule 15 (strexpr -> ID .)
+  ! reduce/reduce conflict for ; resolved using rule 15 (strexpr -> ID .)
+  ! reduce/reduce conflict for ) resolved using rule 15 (strexpr -> ID .)
+  ! reduce/reduce conflict for ; resolved using rule 15 (strexpr -> ID .)
+  ! reduce/reduce conflict for ) resolved using rule 15 (strexpr -> ID .)
+    =               shift and go to state 37
+    +               reduce using rule 15 (strexpr -> ID .)
+    EQUAL           reduce using rule 15 (strexpr -> ID .)
+    NEQUAL          reduce using rule 15 (strexpr -> ID .)
+    ;               reduce using rule 15 (strexpr -> ID .)
+    )               reduce using rule 15 (strexpr -> ID .)
+    >               reduce using rule 24 (number -> ID .)
+    <               reduce using rule 24 (number -> ID .)
+    LEQT            reduce using rule 24 (number -> ID .)
+    MEQT            reduce using rule 24 (number -> ID .)
+    -               reduce using rule 24 (number -> ID .)
+    *               reduce using rule 24 (number -> ID .)
+    /               reduce using rule 24 (number -> ID .)
+    ^               reduce using rule 24 (number -> ID .)
+    AND             reduce using rule 31 (boolval -> ID .)
+    OR              reduce using rule 31 (boolval -> ID .)
+
+  ! EQUAL           [ reduce using rule 24 (number -> ID .) ]
+  ! NEQUAL          [ reduce using rule 24 (number -> ID .) ]
+  ! +               [ reduce using rule 24 (number -> ID .) ]
+  ! ;               [ reduce using rule 24 (number -> ID .) ]
+  ! )               [ reduce using rule 24 (number -> ID .) ]
+  ! ;               [ reduce using rule 31 (boolval -> ID .) ]
+  ! )               [ reduce using rule 31 (boolval -> ID .) ]
+
+
+state 6
+
+    (8) stmt -> expr .
+
+    ;               reduce using rule 8 (stmt -> expr .)
+    )               reduce using rule 8 (stmt -> expr .)
+
+
+state 7
+
+    (9) stmt -> decl .
+
+    ;               reduce using rule 9 (stmt -> decl .)
+    )               reduce using rule 9 (stmt -> decl .)
+
+
+state 8
+
+    (60) loop -> forctrl .
+
+    ID              reduce using rule 60 (loop -> forctrl .)
+    IF              reduce using rule 60 (loop -> forctrl .)
+    FOR             reduce using rule 60 (loop -> forctrl .)
+    WHILE           reduce using rule 60 (loop -> forctrl .)
+    DO              reduce using rule 60 (loop -> forctrl .)
+    SCONST          reduce using rule 60 (loop -> forctrl .)
+    (               reduce using rule 60 (loop -> forctrl .)
+    INT             reduce using rule 60 (loop -> forctrl .)
+    FLOAT           reduce using rule 60 (loop -> forctrl .)
+    STRING          reduce using rule 60 (loop -> forctrl .)
+    BOOLEAN         reduce using rule 60 (loop -> forctrl .)
+    ICONST          reduce using rule 60 (loop -> forctrl .)
+    FCONST          reduce using rule 60 (loop -> forctrl .)
+    TRUE            reduce using rule 60 (loop -> forctrl .)
+    FALSE           reduce using rule 60 (loop -> forctrl .)
+    $end            reduce using rule 60 (loop -> forctrl .)
+    }               reduce using rule 60 (loop -> forctrl .)
+
+
+state 9
+
+    (61) loop -> whilectrl .
+
+    ID              reduce using rule 61 (loop -> whilectrl .)
+    IF              reduce using rule 61 (loop -> whilectrl .)
+    FOR             reduce using rule 61 (loop -> whilectrl .)
+    WHILE           reduce using rule 61 (loop -> whilectrl .)
+    DO              reduce using rule 61 (loop -> whilectrl .)
+    SCONST          reduce using rule 61 (loop -> whilectrl .)
+    (               reduce using rule 61 (loop -> whilectrl .)
+    INT             reduce using rule 61 (loop -> whilectrl .)
+    FLOAT           reduce using rule 61 (loop -> whilectrl .)
+    STRING          reduce using rule 61 (loop -> whilectrl .)
+    BOOLEAN         reduce using rule 61 (loop -> whilectrl .)
+    ICONST          reduce using rule 61 (loop -> whilectrl .)
+    FCONST          reduce using rule 61 (loop -> whilectrl .)
+    TRUE            reduce using rule 61 (loop -> whilectrl .)
+    FALSE           reduce using rule 61 (loop -> whilectrl .)
+    $end            reduce using rule 61 (loop -> whilectrl .)
+    }               reduce using rule 61 (loop -> whilectrl .)
+
+
+state 10
+
+    (62) loop -> dowhilectrl .
+
+    ID              reduce using rule 62 (loop -> dowhilectrl .)
+    IF              reduce using rule 62 (loop -> dowhilectrl .)
+    FOR             reduce using rule 62 (loop -> dowhilectrl .)
+    WHILE           reduce using rule 62 (loop -> dowhilectrl .)
+    DO              reduce using rule 62 (loop -> dowhilectrl .)
+    SCONST          reduce using rule 62 (loop -> dowhilectrl .)
+    (               reduce using rule 62 (loop -> dowhilectrl .)
+    INT             reduce using rule 62 (loop -> dowhilectrl .)
+    FLOAT           reduce using rule 62 (loop -> dowhilectrl .)
+    STRING          reduce using rule 62 (loop -> dowhilectrl .)
+    BOOLEAN         reduce using rule 62 (loop -> dowhilectrl .)
+    ICONST          reduce using rule 62 (loop -> dowhilectrl .)
+    FCONST          reduce using rule 62 (loop -> dowhilectrl .)
+    TRUE            reduce using rule 62 (loop -> dowhilectrl .)
+    FALSE           reduce using rule 62 (loop -> dowhilectrl .)
+    $end            reduce using rule 62 (loop -> dowhilectrl .)
+    }               reduce using rule 62 (loop -> dowhilectrl .)
+
+
+state 11
+
+    (53) cond -> IF . boolblock braceb
+    (54) cond -> IF . boolblock braceb ELSE braceb
+    (55) cond -> IF . boolblock braceb condelif ELSE braceb
+    (58) boolblock -> . ( boolexpr )
+
+    (               shift and go to state 39
+
+    boolblock                      shift and go to state 38
+
+state 12
+
+    (10) expr -> strexpr .
+    (13) strexpr -> strexpr . + strexpr
+    (40) boolcomp -> strexpr . EQUAL strexpr
+    (41) boolcomp -> strexpr . NEQUAL strexpr
+
+    ;               reduce using rule 10 (expr -> strexpr .)
+    )               reduce using rule 10 (expr -> strexpr .)
+    +               shift and go to state 40
+    EQUAL           shift and go to state 41
+    NEQUAL          shift and go to state 42
+
+
+state 13
+
+    (11) expr -> numexpr .
+    (17) numexpr -> numexpr . + numexpr
+    (18) numexpr -> numexpr . - numexpr
+    (19) numexpr -> numexpr . * numexpr
+    (20) numexpr -> numexpr . / numexpr
+    (21) numexpr -> numexpr . ^ numexpr
+
+    ;               reduce using rule 11 (expr -> numexpr .)
+    )               reduce using rule 11 (expr -> numexpr .)
+    +               shift and go to state 43
+    -               shift and go to state 44
+    *               shift and go to state 45
+    /               shift and go to state 46
+    ^               shift and go to state 47
+
+
+state 14
+
+    (12) expr -> boolexpr .
+    (27) boolexpr -> boolexpr . AND boolexpr
+    (28) boolexpr -> boolexpr . OR boolexpr
+
+    ;               reduce using rule 12 (expr -> boolexpr .)
+    )               reduce using rule 12 (expr -> boolexpr .)
+    AND             shift and go to state 48
+    OR              shift and go to state 49
+
+
+state 15
+
+    (42) decl -> numdecl .
+
+    ;               reduce using rule 42 (decl -> numdecl .)
+    )               reduce using rule 42 (decl -> numdecl .)
+
+
+state 16
+
+    (43) decl -> strdecl .
+
+    ;               reduce using rule 43 (decl -> strdecl .)
+    )               reduce using rule 43 (decl -> strdecl .)
+
+
+state 17
+
+    (44) decl -> booldecl .
+
+    ;               reduce using rule 44 (decl -> booldecl .)
+    )               reduce using rule 44 (decl -> booldecl .)
+
+
+state 18
+
+    (63) forctrl -> FOR . forcond braceb
+    (64) forcond -> . ( stmt ; stmt ; stmt )
+
+    (               shift and go to state 51
+
+    forcond                        shift and go to state 50
+
+state 19
+
+    (65) whilectrl -> WHILE . boolblock braceb
+    (58) boolblock -> . ( boolexpr )
+
+    (               shift and go to state 39
+
+    boolblock                      shift and go to state 52
+
+state 20
+
+    (66) dowhilectrl -> DO . braceb WHILE boolblock ;
+    (59) braceb -> . { block }
+
+    {               shift and go to state 54
+
+    braceb                         shift and go to state 53
+
+state 21
+
+    (14) strexpr -> SCONST .
+
+    +               reduce using rule 14 (strexpr -> SCONST .)
+    EQUAL           reduce using rule 14 (strexpr -> SCONST .)
+    NEQUAL          reduce using rule 14 (strexpr -> SCONST .)
+    ;               reduce using rule 14 (strexpr -> SCONST .)
+    )               reduce using rule 14 (strexpr -> SCONST .)
+    AND             reduce using rule 14 (strexpr -> SCONST .)
+    OR              reduce using rule 14 (strexpr -> SCONST .)
+
+
+state 22
+
+    (16) numexpr -> number .
+    (34) boolcomp -> number . EQUAL number
+    (35) boolcomp -> number . NEQUAL number
+    (36) boolcomp -> number . > number
+    (37) boolcomp -> number . < number
+    (38) boolcomp -> number . LEQT number
+    (39) boolcomp -> number . MEQT number
+
+    +               reduce using rule 16 (numexpr -> number .)
+    -               reduce using rule 16 (numexpr -> number .)
+    *               reduce using rule 16 (numexpr -> number .)
+    /               reduce using rule 16 (numexpr -> number .)
+    ^               reduce using rule 16 (numexpr -> number .)
+    ;               reduce using rule 16 (numexpr -> number .)
+    )               reduce using rule 16 (numexpr -> number .)
+    EQUAL           shift and go to state 55
+    NEQUAL          shift and go to state 56
+    >               shift and go to state 57
+    <               shift and go to state 58
+    LEQT            shift and go to state 59
+    MEQT            shift and go to state 60
+
+
+state 23
+
+    (25) boolexpr -> boolval .
+
+    AND             reduce using rule 25 (boolexpr -> boolval .)
+    OR              reduce using rule 25 (boolexpr -> boolval .)
+    ;               reduce using rule 25 (boolexpr -> boolval .)
+    )               reduce using rule 25 (boolexpr -> boolval .)
+
+
+state 24
+
+    (26) boolexpr -> boolcomp .
+
+    AND             reduce using rule 26 (boolexpr -> boolcomp .)
+    OR              reduce using rule 26 (boolexpr -> boolcomp .)
+    ;               reduce using rule 26 (boolexpr -> boolcomp .)
+    )               reduce using rule 26 (boolexpr -> boolcomp .)
+
+
+state 25
+
+    (29) boolexpr -> ( . boolexpr AND boolexpr )
+    (30) boolexpr -> ( . boolexpr OR boolexpr )
+    (25) boolexpr -> . boolval
+    (26) boolexpr -> . boolcomp
+    (27) boolexpr -> . boolexpr AND boolexpr
+    (28) boolexpr -> . boolexpr OR boolexpr
+    (29) boolexpr -> . ( boolexpr AND boolexpr )
+    (30) boolexpr -> . ( boolexpr OR boolexpr )
+    (31) boolval -> . ID
+    (32) boolval -> . TRUE
+    (33) boolval -> . FALSE
+    (34) boolcomp -> . number EQUAL number
+    (35) boolcomp -> . number NEQUAL number
+    (36) boolcomp -> . number > number
+    (37) boolcomp -> . number < number
+    (38) boolcomp -> . number LEQT number
+    (39) boolcomp -> . number MEQT number
+    (40) boolcomp -> . strexpr EQUAL strexpr
+    (41) boolcomp -> . strexpr NEQUAL strexpr
+    (22) number -> . ICONST
+    (23) number -> . FCONST
+    (24) number -> . ID
+    (13) strexpr -> . strexpr + strexpr
+    (14) strexpr -> . SCONST
+    (15) strexpr -> . ID
+
+    (               shift and go to state 25
+    ID              shift and go to state 62
+    TRUE            shift and go to state 32
+    FALSE           shift and go to state 33
+    ICONST          shift and go to state 30
+    FCONST          shift and go to state 31
+    SCONST          shift and go to state 21
+
+    boolexpr                       shift and go to state 61
+    boolval                        shift and go to state 23
+    boolcomp                       shift and go to state 24
+    number                         shift and go to state 63
+    strexpr                        shift and go to state 64
+
+state 26
+
+    (45) numdecl -> INT . ID
+    (47) numdecl -> INT . ID = numexpr
+
+    ID              shift and go to state 65
+
+
+state 27
+
+    (46) numdecl -> FLOAT . ID
+    (48) numdecl -> FLOAT . ID = numexpr
+
+    ID              shift and go to state 66
+
+
+state 28
+
+    (49) strdecl -> STRING . ID
+    (50) strdecl -> STRING . ID = strexpr
+
+    ID              shift and go to state 67
+
+
+state 29
+
+    (51) booldecl -> BOOLEAN . ID
+    (52) booldecl -> BOOLEAN . ID = boolexpr
+
+    ID              shift and go to state 68
+
+
+state 30
+
+    (22) number -> ICONST .
+
+    EQUAL           reduce using rule 22 (number -> ICONST .)
+    NEQUAL          reduce using rule 22 (number -> ICONST .)
+    >               reduce using rule 22 (number -> ICONST .)
+    <               reduce using rule 22 (number -> ICONST .)
+    LEQT            reduce using rule 22 (number -> ICONST .)
+    MEQT            reduce using rule 22 (number -> ICONST .)
+    +               reduce using rule 22 (number -> ICONST .)
+    -               reduce using rule 22 (number -> ICONST .)
+    *               reduce using rule 22 (number -> ICONST .)
+    /               reduce using rule 22 (number -> ICONST .)
+    ^               reduce using rule 22 (number -> ICONST .)
+    ;               reduce using rule 22 (number -> ICONST .)
+    )               reduce using rule 22 (number -> ICONST .)
+    AND             reduce using rule 22 (number -> ICONST .)
+    OR              reduce using rule 22 (number -> ICONST .)
+
+
+state 31
+
+    (23) number -> FCONST .
+
+    EQUAL           reduce using rule 23 (number -> FCONST .)
+    NEQUAL          reduce using rule 23 (number -> FCONST .)
+    >               reduce using rule 23 (number -> FCONST .)
+    <               reduce using rule 23 (number -> FCONST .)
+    LEQT            reduce using rule 23 (number -> FCONST .)
+    MEQT            reduce using rule 23 (number -> FCONST .)
+    +               reduce using rule 23 (number -> FCONST .)
+    -               reduce using rule 23 (number -> FCONST .)
+    *               reduce using rule 23 (number -> FCONST .)
+    /               reduce using rule 23 (number -> FCONST .)
+    ^               reduce using rule 23 (number -> FCONST .)
+    ;               reduce using rule 23 (number -> FCONST .)
+    )               reduce using rule 23 (number -> FCONST .)
+    AND             reduce using rule 23 (number -> FCONST .)
+    OR              reduce using rule 23 (number -> FCONST .)
+
+
+state 32
+
+    (32) boolval -> TRUE .
+
+    AND             reduce using rule 32 (boolval -> TRUE .)
+    OR              reduce using rule 32 (boolval -> TRUE .)
+    ;               reduce using rule 32 (boolval -> TRUE .)
+    )               reduce using rule 32 (boolval -> TRUE .)
+
+
+state 33
+
+    (33) boolval -> FALSE .
+
+    AND             reduce using rule 33 (boolval -> FALSE .)
+    OR              reduce using rule 33 (boolval -> FALSE .)
+    ;               reduce using rule 33 (boolval -> FALSE .)
+    )               reduce using rule 33 (boolval -> FALSE .)
+
+
+state 34
+
+    (1) block -> stmt ; . block
+    (2) block -> stmt ; .
+    (1) block -> . stmt ; block
+    (2) block -> . stmt ;
+    (3) block -> . loop block
+    (4) block -> . cond block
+    (5) block -> . loop
+    (6) block -> . cond
+    (7) stmt -> . ID = expr
+    (8) stmt -> . expr
+    (9) stmt -> . decl
+    (60) loop -> . forctrl
+    (61) loop -> . whilectrl
+    (62) loop -> . dowhilectrl
+    (53) cond -> . IF boolblock braceb
+    (54) cond -> . IF boolblock braceb ELSE braceb
+    (55) cond -> . IF boolblock braceb condelif ELSE braceb
+    (10) expr -> . strexpr
+    (11) expr -> . numexpr
+    (12) expr -> . boolexpr
+    (42) decl -> . numdecl
+    (43) decl -> . strdecl
+    (44) decl -> . booldecl
+    (63) forctrl -> . FOR forcond braceb
+    (65) whilectrl -> . WHILE boolblock braceb
+    (66) dowhilectrl -> . DO braceb WHILE boolblock ;
+    (13) strexpr -> . strexpr + strexpr
+    (14) strexpr -> . SCONST
+    (15) strexpr -> . ID
+    (16) numexpr -> . number
+    (17) numexpr -> . numexpr + numexpr
+    (18) numexpr -> . numexpr - numexpr
+    (19) numexpr -> . numexpr * numexpr
+    (20) numexpr -> . numexpr / numexpr
+    (21) numexpr -> . numexpr ^ numexpr
+    (25) boolexpr -> . boolval
+    (26) boolexpr -> . boolcomp
+    (27) boolexpr -> . boolexpr AND boolexpr
+    (28) boolexpr -> . boolexpr OR boolexpr
+    (29) boolexpr -> . ( boolexpr AND boolexpr )
+    (30) boolexpr -> . ( boolexpr OR boolexpr )
+    (45) numdecl -> . INT ID
+    (46) numdecl -> . FLOAT ID
+    (47) numdecl -> . INT ID = numexpr
+    (48) numdecl -> . FLOAT ID = numexpr
+    (49) strdecl -> . STRING ID
+    (50) strdecl -> . STRING ID = strexpr
+    (51) booldecl -> . BOOLEAN ID
+    (52) booldecl -> . BOOLEAN ID = boolexpr
+    (22) number -> . ICONST
+    (23) number -> . FCONST
+    (24) number -> . ID
+    (31) boolval -> . ID
+    (32) boolval -> . TRUE
+    (33) boolval -> . FALSE
+    (34) boolcomp -> . number EQUAL number
+    (35) boolcomp -> . number NEQUAL number
+    (36) boolcomp -> . number > number
+    (37) boolcomp -> . number < number
+    (38) boolcomp -> . number LEQT number
+    (39) boolcomp -> . number MEQT number
+    (40) boolcomp -> . strexpr EQUAL strexpr
+    (41) boolcomp -> . strexpr NEQUAL strexpr
+
+    $end            reduce using rule 2 (block -> stmt ; .)
+    }               reduce using rule 2 (block -> stmt ; .)
+    ID              shift and go to state 5
+    IF              shift and go to state 11
+    FOR             shift and go to state 18
+    WHILE           shift and go to state 19
+    DO              shift and go to state 20
+    SCONST          shift and go to state 21
+    (               shift and go to state 25
+    INT             shift and go to state 26
+    FLOAT           shift and go to state 27
+    STRING          shift and go to state 28
+    BOOLEAN         shift and go to state 29
+    ICONST          shift and go to state 30
+    FCONST          shift and go to state 31
+    TRUE            shift and go to state 32
+    FALSE           shift and go to state 33
+
+    stmt                           shift and go to state 2
+    block                          shift and go to state 69
+    loop                           shift and go to state 3
+    cond                           shift and go to state 4
+    expr                           shift and go to state 6
+    decl                           shift and go to state 7
+    forctrl                        shift and go to state 8
+    whilectrl                      shift and go to state 9
+    dowhilectrl                    shift and go to state 10
+    strexpr                        shift and go to state 12
+    numexpr                        shift and go to state 13
+    boolexpr                       shift and go to state 14
+    numdecl                        shift and go to state 15
+    strdecl                        shift and go to state 16
+    booldecl                       shift and go to state 17
+    number                         shift and go to state 22
+    boolval                        shift and go to state 23
+    boolcomp                       shift and go to state 24
+
+state 35
+
+    (3) block -> loop block .
+
+    $end            reduce using rule 3 (block -> loop block .)
+    }               reduce using rule 3 (block -> loop block .)
+
+
+state 36
+
+    (4) block -> cond block .
+
+    $end            reduce using rule 4 (block -> cond block .)
+    }               reduce using rule 4 (block -> cond block .)
+
+
+state 37
+
+    (7) stmt -> ID = . expr
+    (10) expr -> . strexpr
+    (11) expr -> . numexpr
+    (12) expr -> . boolexpr
+    (13) strexpr -> . strexpr + strexpr
+    (14) strexpr -> . SCONST
+    (15) strexpr -> . ID
+    (16) numexpr -> . number
+    (17) numexpr -> . numexpr + numexpr
+    (18) numexpr -> . numexpr - numexpr
+    (19) numexpr -> . numexpr * numexpr
+    (20) numexpr -> . numexpr / numexpr
+    (21) numexpr -> . numexpr ^ numexpr
+    (25) boolexpr -> . boolval
+    (26) boolexpr -> . boolcomp
+    (27) boolexpr -> . boolexpr AND boolexpr
+    (28) boolexpr -> . boolexpr OR boolexpr
+    (29) boolexpr -> . ( boolexpr AND boolexpr )
+    (30) boolexpr -> . ( boolexpr OR boolexpr )
+    (22) number -> . ICONST
+    (23) number -> . FCONST
+    (24) number -> . ID
+    (31) boolval -> . ID
+    (32) boolval -> . TRUE
+    (33) boolval -> . FALSE
+    (34) boolcomp -> . number EQUAL number
+    (35) boolcomp -> . number NEQUAL number
+    (36) boolcomp -> . number > number
+    (37) boolcomp -> . number < number
+    (38) boolcomp -> . number LEQT number
+    (39) boolcomp -> . number MEQT number
+    (40) boolcomp -> . strexpr EQUAL strexpr
+    (41) boolcomp -> . strexpr NEQUAL strexpr
+
+    SCONST          shift and go to state 21
+    ID              shift and go to state 70
+    (               shift and go to state 25
+    ICONST          shift and go to state 30
+    FCONST          shift and go to state 31
+    TRUE            shift and go to state 32
+    FALSE           shift and go to state 33
+
+    expr                           shift and go to state 71
+    strexpr                        shift and go to state 12
+    numexpr                        shift and go to state 13
+    boolexpr                       shift and go to state 14
+    number                         shift and go to state 22
+    boolval                        shift and go to state 23
+    boolcomp                       shift and go to state 24
+
+state 38
+
+    (53) cond -> IF boolblock . braceb
+    (54) cond -> IF boolblock . braceb ELSE braceb
+    (55) cond -> IF boolblock . braceb condelif ELSE braceb
+    (59) braceb -> . { block }
+
+    {               shift and go to state 54
+
+    braceb                         shift and go to state 72
+
+state 39
+
+    (58) boolblock -> ( . boolexpr )
+    (25) boolexpr -> . boolval
+    (26) boolexpr -> . boolcomp
+    (27) boolexpr -> . boolexpr AND boolexpr
+    (28) boolexpr -> . boolexpr OR boolexpr
+    (29) boolexpr -> . ( boolexpr AND boolexpr )
+    (30) boolexpr -> . ( boolexpr OR boolexpr )
+    (31) boolval -> . ID
+    (32) boolval -> . TRUE
+    (33) boolval -> . FALSE
+    (34) boolcomp -> . number EQUAL number
+    (35) boolcomp -> . number NEQUAL number
+    (36) boolcomp -> . number > number
+    (37) boolcomp -> . number < number
+    (38) boolcomp -> . number LEQT number
+    (39) boolcomp -> . number MEQT number
+    (40) boolcomp -> . strexpr EQUAL strexpr
+    (41) boolcomp -> . strexpr NEQUAL strexpr
+    (22) number -> . ICONST
+    (23) number -> . FCONST
+    (24) number -> . ID
+    (13) strexpr -> . strexpr + strexpr
+    (14) strexpr -> . SCONST
+    (15) strexpr -> . ID
+
+    (               shift and go to state 25
+    ID              shift and go to state 62
+    TRUE            shift and go to state 32
+    FALSE           shift and go to state 33
+    ICONST          shift and go to state 30
+    FCONST          shift and go to state 31
+    SCONST          shift and go to state 21
+
+    boolexpr                       shift and go to state 73
+    boolval                        shift and go to state 23
+    boolcomp                       shift and go to state 24
+    number                         shift and go to state 63
+    strexpr                        shift and go to state 64
+
+state 40
+
+    (13) strexpr -> strexpr + . strexpr
+    (13) strexpr -> . strexpr + strexpr
+    (14) strexpr -> . SCONST
+    (15) strexpr -> . ID
+
+    SCONST          shift and go to state 21
+    ID              shift and go to state 75
+
+    strexpr                        shift and go to state 74
+
+state 41
+
+    (40) boolcomp -> strexpr EQUAL . strexpr
+    (13) strexpr -> . strexpr + strexpr
+    (14) strexpr -> . SCONST
+    (15) strexpr -> . ID
+
+    SCONST          shift and go to state 21
+    ID              shift and go to state 75
+
+    strexpr                        shift and go to state 76
+
+state 42
+
+    (41) boolcomp -> strexpr NEQUAL . strexpr
+    (13) strexpr -> . strexpr + strexpr
+    (14) strexpr -> . SCONST
+    (15) strexpr -> . ID
+
+    SCONST          shift and go to state 21
+    ID              shift and go to state 75
+
+    strexpr                        shift and go to state 77
+
+state 43
+
+    (17) numexpr -> numexpr + . numexpr
+    (16) numexpr -> . number
+    (17) numexpr -> . numexpr + numexpr
+    (18) numexpr -> . numexpr - numexpr
+    (19) numexpr -> . numexpr * numexpr
+    (20) numexpr -> . numexpr / numexpr
+    (21) numexpr -> . numexpr ^ numexpr
+    (22) number -> . ICONST
+    (23) number -> . FCONST
+    (24) number -> . ID
+
+    ICONST          shift and go to state 30
+    FCONST          shift and go to state 31
+    ID              shift and go to state 80
+
+    numexpr                        shift and go to state 78
+    number                         shift and go to state 79
+
+state 44
+
+    (18) numexpr -> numexpr - . numexpr
+    (16) numexpr -> . number
+    (17) numexpr -> . numexpr + numexpr
+    (18) numexpr -> . numexpr - numexpr
+    (19) numexpr -> . numexpr * numexpr
+    (20) numexpr -> . numexpr / numexpr
+    (21) numexpr -> . numexpr ^ numexpr
+    (22) number -> . ICONST
+    (23) number -> . FCONST
+    (24) number -> . ID
+
+    ICONST          shift and go to state 30
+    FCONST          shift and go to state 31
+    ID              shift and go to state 80
+
+    numexpr                        shift and go to state 81
+    number                         shift and go to state 79
+
+state 45
+
+    (19) numexpr -> numexpr * . numexpr
+    (16) numexpr -> . number
+    (17) numexpr -> . numexpr + numexpr
+    (18) numexpr -> . numexpr - numexpr
+    (19) numexpr -> . numexpr * numexpr
+    (20) numexpr -> . numexpr / numexpr
+    (21) numexpr -> . numexpr ^ numexpr
+    (22) number -> . ICONST
+    (23) number -> . FCONST
+    (24) number -> . ID
+
+    ICONST          shift and go to state 30
+    FCONST          shift and go to state 31
+    ID              shift and go to state 80
+
+    numexpr                        shift and go to state 82
+    number                         shift and go to state 79
+
+state 46
+
+    (20) numexpr -> numexpr / . numexpr
+    (16) numexpr -> . number
+    (17) numexpr -> . numexpr + numexpr
+    (18) numexpr -> . numexpr - numexpr
+    (19) numexpr -> . numexpr * numexpr
+    (20) numexpr -> . numexpr / numexpr
+    (21) numexpr -> . numexpr ^ numexpr
+    (22) number -> . ICONST
+    (23) number -> . FCONST
+    (24) number -> . ID
+
+    ICONST          shift and go to state 30
+    FCONST          shift and go to state 31
+    ID              shift and go to state 80
+
+    numexpr                        shift and go to state 83
+    number                         shift and go to state 79
+
+state 47
+
+    (21) numexpr -> numexpr ^ . numexpr
+    (16) numexpr -> . number
+    (17) numexpr -> . numexpr + numexpr
+    (18) numexpr -> . numexpr - numexpr
+    (19) numexpr -> . numexpr * numexpr
+    (20) numexpr -> . numexpr / numexpr
+    (21) numexpr -> . numexpr ^ numexpr
+    (22) number -> . ICONST
+    (23) number -> . FCONST
+    (24) number -> . ID
+
+    ICONST          shift and go to state 30
+    FCONST          shift and go to state 31
+    ID              shift and go to state 80
+
+    numexpr                        shift and go to state 84
+    number                         shift and go to state 79
+
+state 48
+
+    (27) boolexpr -> boolexpr AND . boolexpr
+    (25) boolexpr -> . boolval
+    (26) boolexpr -> . boolcomp
+    (27) boolexpr -> . boolexpr AND boolexpr
+    (28) boolexpr -> . boolexpr OR boolexpr
+    (29) boolexpr -> . ( boolexpr AND boolexpr )
+    (30) boolexpr -> . ( boolexpr OR boolexpr )
+    (31) boolval -> . ID
+    (32) boolval -> . TRUE
+    (33) boolval -> . FALSE
+    (34) boolcomp -> . number EQUAL number
+    (35) boolcomp -> . number NEQUAL number
+    (36) boolcomp -> . number > number
+    (37) boolcomp -> . number < number
+    (38) boolcomp -> . number LEQT number
+    (39) boolcomp -> . number MEQT number
+    (40) boolcomp -> . strexpr EQUAL strexpr
+    (41) boolcomp -> . strexpr NEQUAL strexpr
+    (22) number -> . ICONST
+    (23) number -> . FCONST
+    (24) number -> . ID
+    (13) strexpr -> . strexpr + strexpr
+    (14) strexpr -> . SCONST
+    (15) strexpr -> . ID
+
+    (               shift and go to state 25
+    ID              shift and go to state 62
+    TRUE            shift and go to state 32
+    FALSE           shift and go to state 33
+    ICONST          shift and go to state 30
+    FCONST          shift and go to state 31
+    SCONST          shift and go to state 21
+
+    boolexpr                       shift and go to state 85
+    boolval                        shift and go to state 23
+    boolcomp                       shift and go to state 24
+    number                         shift and go to state 63
+    strexpr                        shift and go to state 64
+
+state 49
+
+    (28) boolexpr -> boolexpr OR . boolexpr
+    (25) boolexpr -> . boolval
+    (26) boolexpr -> . boolcomp
+    (27) boolexpr -> . boolexpr AND boolexpr
+    (28) boolexpr -> . boolexpr OR boolexpr
+    (29) boolexpr -> . ( boolexpr AND boolexpr )
+    (30) boolexpr -> . ( boolexpr OR boolexpr )
+    (31) boolval -> . ID
+    (32) boolval -> . TRUE
+    (33) boolval -> . FALSE
+    (34) boolcomp -> . number EQUAL number
+    (35) boolcomp -> . number NEQUAL number
+    (36) boolcomp -> . number > number
+    (37) boolcomp -> . number < number
+    (38) boolcomp -> . number LEQT number
+    (39) boolcomp -> . number MEQT number
+    (40) boolcomp -> . strexpr EQUAL strexpr
+    (41) boolcomp -> . strexpr NEQUAL strexpr
+    (22) number -> . ICONST
+    (23) number -> . FCONST
+    (24) number -> . ID
+    (13) strexpr -> . strexpr + strexpr
+    (14) strexpr -> . SCONST
+    (15) strexpr -> . ID
+
+    (               shift and go to state 25
+    ID              shift and go to state 62
+    TRUE            shift and go to state 32
+    FALSE           shift and go to state 33
+    ICONST          shift and go to state 30
+    FCONST          shift and go to state 31
+    SCONST          shift and go to state 21
+
+    boolexpr                       shift and go to state 86
+    boolval                        shift and go to state 23
+    boolcomp                       shift and go to state 24
+    number                         shift and go to state 63
+    strexpr                        shift and go to state 64
+
+state 50
+
+    (63) forctrl -> FOR forcond . braceb
+    (59) braceb -> . { block }
+
+    {               shift and go to state 54
+
+    braceb                         shift and go to state 87
+
+state 51
+
+    (64) forcond -> ( . stmt ; stmt ; stmt )
+    (7) stmt -> . ID = expr
+    (8) stmt -> . expr
+    (9) stmt -> . decl
+    (10) expr -> . strexpr
+    (11) expr -> . numexpr
+    (12) expr -> . boolexpr
+    (42) decl -> . numdecl
+    (43) decl -> . strdecl
+    (44) decl -> . booldecl
+    (13) strexpr -> . strexpr + strexpr
+    (14) strexpr -> . SCONST
+    (15) strexpr -> . ID
+    (16) numexpr -> . number
+    (17) numexpr -> . numexpr + numexpr
+    (18) numexpr -> . numexpr - numexpr
+    (19) numexpr -> . numexpr * numexpr
+    (20) numexpr -> . numexpr / numexpr
+    (21) numexpr -> . numexpr ^ numexpr
+    (25) boolexpr -> . boolval
+    (26) boolexpr -> . boolcomp
+    (27) boolexpr -> . boolexpr AND boolexpr
+    (28) boolexpr -> . boolexpr OR boolexpr
+    (29) boolexpr -> . ( boolexpr AND boolexpr )
+    (30) boolexpr -> . ( boolexpr OR boolexpr )
+    (45) numdecl -> . INT ID
+    (46) numdecl -> . FLOAT ID
+    (47) numdecl -> . INT ID = numexpr
+    (48) numdecl -> . FLOAT ID = numexpr
+    (49) strdecl -> . STRING ID
+    (50) strdecl -> . STRING ID = strexpr
+    (51) booldecl -> . BOOLEAN ID
+    (52) booldecl -> . BOOLEAN ID = boolexpr
+    (22) number -> . ICONST
+    (23) number -> . FCONST
+    (24) number -> . ID
+    (31) boolval -> . ID
+    (32) boolval -> . TRUE
+    (33) boolval -> . FALSE
+    (34) boolcomp -> . number EQUAL number
+    (35) boolcomp -> . number NEQUAL number
+    (36) boolcomp -> . number > number
+    (37) boolcomp -> . number < number
+    (38) boolcomp -> . number LEQT number
+    (39) boolcomp -> . number MEQT number
+    (40) boolcomp -> . strexpr EQUAL strexpr
+    (41) boolcomp -> . strexpr NEQUAL strexpr
+
+    ID              shift and go to state 5
+    SCONST          shift and go to state 21
+    (               shift and go to state 25
+    INT             shift and go to state 26
+    FLOAT           shift and go to state 27
+    STRING          shift and go to state 28
+    BOOLEAN         shift and go to state 29
+    ICONST          shift and go to state 30
+    FCONST          shift and go to state 31
+    TRUE            shift and go to state 32
+    FALSE           shift and go to state 33
+
+    stmt                           shift and go to state 88
+    expr                           shift and go to state 6
+    decl                           shift and go to state 7
+    strexpr                        shift and go to state 12
+    numexpr                        shift and go to state 13
+    boolexpr                       shift and go to state 14
+    numdecl                        shift and go to state 15
+    strdecl                        shift and go to state 16
+    booldecl                       shift and go to state 17
+    number                         shift and go to state 22
+    boolval                        shift and go to state 23
+    boolcomp                       shift and go to state 24
+
+state 52
+
+    (65) whilectrl -> WHILE boolblock . braceb
+    (59) braceb -> . { block }
+
+    {               shift and go to state 54
+
+    braceb                         shift and go to state 89
+
+state 53
+
+    (66) dowhilectrl -> DO braceb . WHILE boolblock ;
+
+    WHILE           shift and go to state 90
+
+
+state 54
+
+    (59) braceb -> { . block }
+    (1) block -> . stmt ; block
+    (2) block -> . stmt ;
+    (3) block -> . loop block
+    (4) block -> . cond block
+    (5) block -> . loop
+    (6) block -> . cond
+    (7) stmt -> . ID = expr
+    (8) stmt -> . expr
+    (9) stmt -> . decl
+    (60) loop -> . forctrl
+    (61) loop -> . whilectrl
+    (62) loop -> . dowhilectrl
+    (53) cond -> . IF boolblock braceb
+    (54) cond -> . IF boolblock braceb ELSE braceb
+    (55) cond -> . IF boolblock braceb condelif ELSE braceb
+    (10) expr -> . strexpr
+    (11) expr -> . numexpr
+    (12) expr -> . boolexpr
+    (42) decl -> . numdecl
+    (43) decl -> . strdecl
+    (44) decl -> . booldecl
+    (63) forctrl -> . FOR forcond braceb
+    (65) whilectrl -> . WHILE boolblock braceb
+    (66) dowhilectrl -> . DO braceb WHILE boolblock ;
+    (13) strexpr -> . strexpr + strexpr
+    (14) strexpr -> . SCONST
+    (15) strexpr -> . ID
+    (16) numexpr -> . number
+    (17) numexpr -> . numexpr + numexpr
+    (18) numexpr -> . numexpr - numexpr
+    (19) numexpr -> . numexpr * numexpr
+    (20) numexpr -> . numexpr / numexpr
+    (21) numexpr -> . numexpr ^ numexpr
+    (25) boolexpr -> . boolval
+    (26) boolexpr -> . boolcomp
+    (27) boolexpr -> . boolexpr AND boolexpr
+    (28) boolexpr -> . boolexpr OR boolexpr
+    (29) boolexpr -> . ( boolexpr AND boolexpr )
+    (30) boolexpr -> . ( boolexpr OR boolexpr )
+    (45) numdecl -> . INT ID
+    (46) numdecl -> . FLOAT ID
+    (47) numdecl -> . INT ID = numexpr
+    (48) numdecl -> . FLOAT ID = numexpr
+    (49) strdecl -> . STRING ID
+    (50) strdecl -> . STRING ID = strexpr
+    (51) booldecl -> . BOOLEAN ID
+    (52) booldecl -> . BOOLEAN ID = boolexpr
+    (22) number -> . ICONST
+    (23) number -> . FCONST
+    (24) number -> . ID
+    (31) boolval -> . ID
+    (32) boolval -> . TRUE
+    (33) boolval -> . FALSE
+    (34) boolcomp -> . number EQUAL number
+    (35) boolcomp -> . number NEQUAL number
+    (36) boolcomp -> . number > number
+    (37) boolcomp -> . number < number
+    (38) boolcomp -> . number LEQT number
+    (39) boolcomp -> . number MEQT number
+    (40) boolcomp -> . strexpr EQUAL strexpr
+    (41) boolcomp -> . strexpr NEQUAL strexpr
+
+    ID              shift and go to state 5
+    IF              shift and go to state 11
+    FOR             shift and go to state 18
+    WHILE           shift and go to state 19
+    DO              shift and go to state 20
+    SCONST          shift and go to state 21
+    (               shift and go to state 25
+    INT             shift and go to state 26
+    FLOAT           shift and go to state 27
+    STRING          shift and go to state 28
+    BOOLEAN         shift and go to state 29
+    ICONST          shift and go to state 30
+    FCONST          shift and go to state 31
+    TRUE            shift and go to state 32
+    FALSE           shift and go to state 33
+
+    block                          shift and go to state 91
+    stmt                           shift and go to state 2
+    loop                           shift and go to state 3
+    cond                           shift and go to state 4
+    expr                           shift and go to state 6
+    decl                           shift and go to state 7
+    forctrl                        shift and go to state 8
+    whilectrl                      shift and go to state 9
+    dowhilectrl                    shift and go to state 10
+    strexpr                        shift and go to state 12
+    numexpr                        shift and go to state 13
+    boolexpr                       shift and go to state 14
+    numdecl                        shift and go to state 15
+    strdecl                        shift and go to state 16
+    booldecl                       shift and go to state 17
+    number                         shift and go to state 22
+    boolval                        shift and go to state 23
+    boolcomp                       shift and go to state 24
+
+state 55
+
+    (34) boolcomp -> number EQUAL . number
+    (22) number -> . ICONST
+    (23) number -> . FCONST
+    (24) number -> . ID
+
+    ICONST          shift and go to state 30
+    FCONST          shift and go to state 31
+    ID              shift and go to state 80
+
+    number                         shift and go to state 92
+
+state 56
+
+    (35) boolcomp -> number NEQUAL . number
+    (22) number -> . ICONST
+    (23) number -> . FCONST
+    (24) number -> . ID
+
+    ICONST          shift and go to state 30
+    FCONST          shift and go to state 31
+    ID              shift and go to state 80
+
+    number                         shift and go to state 93
+
+state 57
+
+    (36) boolcomp -> number > . number
+    (22) number -> . ICONST
+    (23) number -> . FCONST
+    (24) number -> . ID
+
+    ICONST          shift and go to state 30
+    FCONST          shift and go to state 31
+    ID              shift and go to state 80
+
+    number                         shift and go to state 94
+
+state 58
+
+    (37) boolcomp -> number < . number
+    (22) number -> . ICONST
+    (23) number -> . FCONST
+    (24) number -> . ID
+
+    ICONST          shift and go to state 30
+    FCONST          shift and go to state 31
+    ID              shift and go to state 80
+
+    number                         shift and go to state 95
+
+state 59
+
+    (38) boolcomp -> number LEQT . number
+    (22) number -> . ICONST
+    (23) number -> . FCONST
+    (24) number -> . ID
+
+    ICONST          shift and go to state 30
+    FCONST          shift and go to state 31
+    ID              shift and go to state 80
+
+    number                         shift and go to state 96
+
+state 60
+
+    (39) boolcomp -> number MEQT . number
+    (22) number -> . ICONST
+    (23) number -> . FCONST
+    (24) number -> . ID
+
+    ICONST          shift and go to state 30
+    FCONST          shift and go to state 31
+    ID              shift and go to state 80
+
+    number                         shift and go to state 97
+
+state 61
+
+    (29) boolexpr -> ( boolexpr . AND boolexpr )
+    (30) boolexpr -> ( boolexpr . OR boolexpr )
+    (27) boolexpr -> boolexpr . AND boolexpr
+    (28) boolexpr -> boolexpr . OR boolexpr
+
+    AND             shift and go to state 98
+    OR              shift and go to state 99
+
+
+state 62
+
+    (31) boolval -> ID .
+    (24) number -> ID .
+    (15) strexpr -> ID .
+
+  ! reduce/reduce conflict for EQUAL resolved using rule 15 (strexpr -> ID .)
+  ! reduce/reduce conflict for NEQUAL resolved using rule 15 (strexpr -> ID .)
+    AND             reduce using rule 31 (boolval -> ID .)
+    OR              reduce using rule 31 (boolval -> ID .)
+    )               reduce using rule 31 (boolval -> ID .)
+    ;               reduce using rule 31 (boolval -> ID .)
+    >               reduce using rule 24 (number -> ID .)
+    <               reduce using rule 24 (number -> ID .)
+    LEQT            reduce using rule 24 (number -> ID .)
+    MEQT            reduce using rule 24 (number -> ID .)
+    EQUAL           reduce using rule 15 (strexpr -> ID .)
+    NEQUAL          reduce using rule 15 (strexpr -> ID .)
+    +               reduce using rule 15 (strexpr -> ID .)
+
+  ! EQUAL           [ reduce using rule 24 (number -> ID .) ]
+  ! NEQUAL          [ reduce using rule 24 (number -> ID .) ]
+
+
+state 63
+
+    (34) boolcomp -> number . EQUAL number
+    (35) boolcomp -> number . NEQUAL number
+    (36) boolcomp -> number . > number
+    (37) boolcomp -> number . < number
+    (38) boolcomp -> number . LEQT number
+    (39) boolcomp -> number . MEQT number
+
+    EQUAL           shift and go to state 55
+    NEQUAL          shift and go to state 56
+    >               shift and go to state 57
+    <               shift and go to state 58
+    LEQT            shift and go to state 59
+    MEQT            shift and go to state 60
+
+
+state 64
+
+    (40) boolcomp -> strexpr . EQUAL strexpr
+    (41) boolcomp -> strexpr . NEQUAL strexpr
+    (13) strexpr -> strexpr . + strexpr
+
+    EQUAL           shift and go to state 41
+    NEQUAL          shift and go to state 42
+    +               shift and go to state 40
+
+
+state 65
+
+    (45) numdecl -> INT ID .
+    (47) numdecl -> INT ID . = numexpr
+
+    ;               reduce using rule 45 (numdecl -> INT ID .)
+    )               reduce using rule 45 (numdecl -> INT ID .)
+    =               shift and go to state 100
+
+
+state 66
+
+    (46) numdecl -> FLOAT ID .
+    (48) numdecl -> FLOAT ID . = numexpr
+
+    ;               reduce using rule 46 (numdecl -> FLOAT ID .)
+    )               reduce using rule 46 (numdecl -> FLOAT ID .)
+    =               shift and go to state 101
+
+
+state 67
+
+    (49) strdecl -> STRING ID .
+    (50) strdecl -> STRING ID . = strexpr
+
+    ;               reduce using rule 49 (strdecl -> STRING ID .)
+    )               reduce using rule 49 (strdecl -> STRING ID .)
+    =               shift and go to state 102
+
+
+state 68
+
+    (51) booldecl -> BOOLEAN ID .
+    (52) booldecl -> BOOLEAN ID . = boolexpr
+
+    ;               reduce using rule 51 (booldecl -> BOOLEAN ID .)
+    )               reduce using rule 51 (booldecl -> BOOLEAN ID .)
+    =               shift and go to state 103
+
+
+state 69
+
+    (1) block -> stmt ; block .
+
+    $end            reduce using rule 1 (block -> stmt ; block .)
+    }               reduce using rule 1 (block -> stmt ; block .)
+
+
+state 70
+
+    (15) strexpr -> ID .
+    (24) number -> ID .
+    (31) boolval -> ID .
+
+  ! reduce/reduce conflict for EQUAL resolved using rule 15 (strexpr -> ID .)
+  ! reduce/reduce conflict for NEQUAL resolved using rule 15 (strexpr -> ID .)
+  ! reduce/reduce conflict for + resolved using rule 15 (strexpr -> ID .)
+  ! reduce/reduce conflict for ; resolved using rule 15 (strexpr -> ID .)
+  ! reduce/reduce conflict for ) resolved using rule 15 (strexpr -> ID .)
+  ! reduce/reduce conflict for ; resolved using rule 15 (strexpr -> ID .)
+  ! reduce/reduce conflict for ) resolved using rule 15 (strexpr -> ID .)
+    +               reduce using rule 15 (strexpr -> ID .)
+    EQUAL           reduce using rule 15 (strexpr -> ID .)
+    NEQUAL          reduce using rule 15 (strexpr -> ID .)
+    ;               reduce using rule 15 (strexpr -> ID .)
+    )               reduce using rule 15 (strexpr -> ID .)
+    >               reduce using rule 24 (number -> ID .)
+    <               reduce using rule 24 (number -> ID .)
+    LEQT            reduce using rule 24 (number -> ID .)
+    MEQT            reduce using rule 24 (number -> ID .)
+    -               reduce using rule 24 (number -> ID .)
+    *               reduce using rule 24 (number -> ID .)
+    /               reduce using rule 24 (number -> ID .)
+    ^               reduce using rule 24 (number -> ID .)
+    AND             reduce using rule 31 (boolval -> ID .)
+    OR              reduce using rule 31 (boolval -> ID .)
+
+  ! EQUAL           [ reduce using rule 24 (number -> ID .) ]
+  ! NEQUAL          [ reduce using rule 24 (number -> ID .) ]
+  ! +               [ reduce using rule 24 (number -> ID .) ]
+  ! ;               [ reduce using rule 24 (number -> ID .) ]
+  ! )               [ reduce using rule 24 (number -> ID .) ]
+  ! ;               [ reduce using rule 31 (boolval -> ID .) ]
+  ! )               [ reduce using rule 31 (boolval -> ID .) ]
+
+
+state 71
+
+    (7) stmt -> ID = expr .
+
+    ;               reduce using rule 7 (stmt -> ID = expr .)
+    )               reduce using rule 7 (stmt -> ID = expr .)
+
+
+state 72
+
+    (53) cond -> IF boolblock braceb .
+    (54) cond -> IF boolblock braceb . ELSE braceb
+    (55) cond -> IF boolblock braceb . condelif ELSE braceb
+    (56) condelif -> . ELIF boolblock braceb
+    (57) condelif -> . ELIF boolblock braceb condelif
+
+    ID              reduce using rule 53 (cond -> IF boolblock braceb .)
+    IF              reduce using rule 53 (cond -> IF boolblock braceb .)
+    FOR             reduce using rule 53 (cond -> IF boolblock braceb .)
+    WHILE           reduce using rule 53 (cond -> IF boolblock braceb .)
+    DO              reduce using rule 53 (cond -> IF boolblock braceb .)
+    SCONST          reduce using rule 53 (cond -> IF boolblock braceb .)
+    (               reduce using rule 53 (cond -> IF boolblock braceb .)
+    INT             reduce using rule 53 (cond -> IF boolblock braceb .)
+    FLOAT           reduce using rule 53 (cond -> IF boolblock braceb .)
+    STRING          reduce using rule 53 (cond -> IF boolblock braceb .)
+    BOOLEAN         reduce using rule 53 (cond -> IF boolblock braceb .)
+    ICONST          reduce using rule 53 (cond -> IF boolblock braceb .)
+    FCONST          reduce using rule 53 (cond -> IF boolblock braceb .)
+    TRUE            reduce using rule 53 (cond -> IF boolblock braceb .)
+    FALSE           reduce using rule 53 (cond -> IF boolblock braceb .)
+    $end            reduce using rule 53 (cond -> IF boolblock braceb .)
+    }               reduce using rule 53 (cond -> IF boolblock braceb .)
+    ELSE            shift and go to state 104
+    ELIF            shift and go to state 106
+
+    condelif                       shift and go to state 105
+
+state 73
+
+    (58) boolblock -> ( boolexpr . )
+    (27) boolexpr -> boolexpr . AND boolexpr
+    (28) boolexpr -> boolexpr . OR boolexpr
+
+    )               shift and go to state 107
+    AND             shift and go to state 48
+    OR              shift and go to state 49
+
+
+state 74
+
+    (13) strexpr -> strexpr + strexpr .
+    (13) strexpr -> strexpr . + strexpr
+
+  ! shift/reduce conflict for + resolved as shift
+    EQUAL           reduce using rule 13 (strexpr -> strexpr + strexpr .)
+    NEQUAL          reduce using rule 13 (strexpr -> strexpr + strexpr .)
+    ;               reduce using rule 13 (strexpr -> strexpr + strexpr .)
+    )               reduce using rule 13 (strexpr -> strexpr + strexpr .)
+    AND             reduce using rule 13 (strexpr -> strexpr + strexpr .)
+    OR              reduce using rule 13 (strexpr -> strexpr + strexpr .)
+    +               shift and go to state 40
+
+  ! +               [ reduce using rule 13 (strexpr -> strexpr + strexpr .) ]
+
+
+state 75
+
+    (15) strexpr -> ID .
+
+    +               reduce using rule 15 (strexpr -> ID .)
+    EQUAL           reduce using rule 15 (strexpr -> ID .)
+    NEQUAL          reduce using rule 15 (strexpr -> ID .)
+    ;               reduce using rule 15 (strexpr -> ID .)
+    )               reduce using rule 15 (strexpr -> ID .)
+    AND             reduce using rule 15 (strexpr -> ID .)
+    OR              reduce using rule 15 (strexpr -> ID .)
+
+
+state 76
+
+    (40) boolcomp -> strexpr EQUAL strexpr .
+    (13) strexpr -> strexpr . + strexpr
+
+    AND             reduce using rule 40 (boolcomp -> strexpr EQUAL strexpr .)
+    OR              reduce using rule 40 (boolcomp -> strexpr EQUAL strexpr .)
+    ;               reduce using rule 40 (boolcomp -> strexpr EQUAL strexpr .)
+    )               reduce using rule 40 (boolcomp -> strexpr EQUAL strexpr .)
+    +               shift and go to state 40
+
+
+state 77
+
+    (41) boolcomp -> strexpr NEQUAL strexpr .
+    (13) strexpr -> strexpr . + strexpr
+
+    AND             reduce using rule 41 (boolcomp -> strexpr NEQUAL strexpr .)
+    OR              reduce using rule 41 (boolcomp -> strexpr NEQUAL strexpr .)
+    ;               reduce using rule 41 (boolcomp -> strexpr NEQUAL strexpr .)
+    )               reduce using rule 41 (boolcomp -> strexpr NEQUAL strexpr .)
+    +               shift and go to state 40
+
+
+state 78
+
+    (17) numexpr -> numexpr + numexpr .
+    (17) numexpr -> numexpr . + numexpr
+    (18) numexpr -> numexpr . - numexpr
+    (19) numexpr -> numexpr . * numexpr
+    (20) numexpr -> numexpr . / numexpr
+    (21) numexpr -> numexpr . ^ numexpr
+
+  ! shift/reduce conflict for + resolved as shift
+  ! shift/reduce conflict for - resolved as shift
+  ! shift/reduce conflict for * resolved as shift
+  ! shift/reduce conflict for / resolved as shift
+  ! shift/reduce conflict for ^ resolved as shift
+    ;               reduce using rule 17 (numexpr -> numexpr + numexpr .)
+    )               reduce using rule 17 (numexpr -> numexpr + numexpr .)
+    +               shift and go to state 43
+    -               shift and go to state 44
+    *               shift and go to state 45
+    /               shift and go to state 46
+    ^               shift and go to state 47
+
+  ! +               [ reduce using rule 17 (numexpr -> numexpr + numexpr .) ]
+  ! -               [ reduce using rule 17 (numexpr -> numexpr + numexpr .) ]
+  ! *               [ reduce using rule 17 (numexpr -> numexpr + numexpr .) ]
+  ! /               [ reduce using rule 17 (numexpr -> numexpr + numexpr .) ]
+  ! ^               [ reduce using rule 17 (numexpr -> numexpr + numexpr .) ]
+
+
+state 79
+
+    (16) numexpr -> number .
+
+    +               reduce using rule 16 (numexpr -> number .)
+    -               reduce using rule 16 (numexpr -> number .)
+    *               reduce using rule 16 (numexpr -> number .)
+    /               reduce using rule 16 (numexpr -> number .)
+    ^               reduce using rule 16 (numexpr -> number .)
+    ;               reduce using rule 16 (numexpr -> number .)
+    )               reduce using rule 16 (numexpr -> number .)
+
+
+state 80
+
+    (24) number -> ID .
+
+    +               reduce using rule 24 (number -> ID .)
+    -               reduce using rule 24 (number -> ID .)
+    *               reduce using rule 24 (number -> ID .)
+    /               reduce using rule 24 (number -> ID .)
+    ^               reduce using rule 24 (number -> ID .)
+    ;               reduce using rule 24 (number -> ID .)
+    )               reduce using rule 24 (number -> ID .)
+    AND             reduce using rule 24 (number -> ID .)
+    OR              reduce using rule 24 (number -> ID .)
+
+
+state 81
+
+    (18) numexpr -> numexpr - numexpr .
+    (17) numexpr -> numexpr . + numexpr
+    (18) numexpr -> numexpr . - numexpr
+    (19) numexpr -> numexpr . * numexpr
+    (20) numexpr -> numexpr . / numexpr
+    (21) numexpr -> numexpr . ^ numexpr
+
+  ! shift/reduce conflict for + resolved as shift
+  ! shift/reduce conflict for - resolved as shift
+  ! shift/reduce conflict for * resolved as shift
+  ! shift/reduce conflict for / resolved as shift
+  ! shift/reduce conflict for ^ resolved as shift
+    ;               reduce using rule 18 (numexpr -> numexpr - numexpr .)
+    )               reduce using rule 18 (numexpr -> numexpr - numexpr .)
+    +               shift and go to state 43
+    -               shift and go to state 44
+    *               shift and go to state 45
+    /               shift and go to state 46
+    ^               shift and go to state 47
+
+  ! +               [ reduce using rule 18 (numexpr -> numexpr - numexpr .) ]
+  ! -               [ reduce using rule 18 (numexpr -> numexpr - numexpr .) ]
+  ! *               [ reduce using rule 18 (numexpr -> numexpr - numexpr .) ]
+  ! /               [ reduce using rule 18 (numexpr -> numexpr - numexpr .) ]
+  ! ^               [ reduce using rule 18 (numexpr -> numexpr - numexpr .) ]
+
+
+state 82
+
+    (19) numexpr -> numexpr * numexpr .
+    (17) numexpr -> numexpr . + numexpr
+    (18) numexpr -> numexpr . - numexpr
+    (19) numexpr -> numexpr . * numexpr
+    (20) numexpr -> numexpr . / numexpr
+    (21) numexpr -> numexpr . ^ numexpr
+
+  ! shift/reduce conflict for + resolved as shift
+  ! shift/reduce conflict for - resolved as shift
+  ! shift/reduce conflict for * resolved as shift
+  ! shift/reduce conflict for / resolved as shift
+  ! shift/reduce conflict for ^ resolved as shift
+    ;               reduce using rule 19 (numexpr -> numexpr * numexpr .)
+    )               reduce using rule 19 (numexpr -> numexpr * numexpr .)
+    +               shift and go to state 43
+    -               shift and go to state 44
+    *               shift and go to state 45
+    /               shift and go to state 46
+    ^               shift and go to state 47
+
+  ! +               [ reduce using rule 19 (numexpr -> numexpr * numexpr .) ]
+  ! -               [ reduce using rule 19 (numexpr -> numexpr * numexpr .) ]
+  ! *               [ reduce using rule 19 (numexpr -> numexpr * numexpr .) ]
+  ! /               [ reduce using rule 19 (numexpr -> numexpr * numexpr .) ]
+  ! ^               [ reduce using rule 19 (numexpr -> numexpr * numexpr .) ]
+
+
+state 83
+
+    (20) numexpr -> numexpr / numexpr .
+    (17) numexpr -> numexpr . + numexpr
+    (18) numexpr -> numexpr . - numexpr
+    (19) numexpr -> numexpr . * numexpr
+    (20) numexpr -> numexpr . / numexpr
+    (21) numexpr -> numexpr . ^ numexpr
+
+  ! shift/reduce conflict for + resolved as shift
+  ! shift/reduce conflict for - resolved as shift
+  ! shift/reduce conflict for * resolved as shift
+  ! shift/reduce conflict for / resolved as shift
+  ! shift/reduce conflict for ^ resolved as shift
+    ;               reduce using rule 20 (numexpr -> numexpr / numexpr .)
+    )               reduce using rule 20 (numexpr -> numexpr / numexpr .)
+    +               shift and go to state 43
+    -               shift and go to state 44
+    *               shift and go to state 45
+    /               shift and go to state 46
+    ^               shift and go to state 47
+
+  ! +               [ reduce using rule 20 (numexpr -> numexpr / numexpr .) ]
+  ! -               [ reduce using rule 20 (numexpr -> numexpr / numexpr .) ]
+  ! *               [ reduce using rule 20 (numexpr -> numexpr / numexpr .) ]
+  ! /               [ reduce using rule 20 (numexpr -> numexpr / numexpr .) ]
+  ! ^               [ reduce using rule 20 (numexpr -> numexpr / numexpr .) ]
+
+
+state 84
+
+    (21) numexpr -> numexpr ^ numexpr .
+    (17) numexpr -> numexpr . + numexpr
+    (18) numexpr -> numexpr . - numexpr
+    (19) numexpr -> numexpr . * numexpr
+    (20) numexpr -> numexpr . / numexpr
+    (21) numexpr -> numexpr . ^ numexpr
+
+  ! shift/reduce conflict for + resolved as shift
+  ! shift/reduce conflict for - resolved as shift
+  ! shift/reduce conflict for * resolved as shift
+  ! shift/reduce conflict for / resolved as shift
+  ! shift/reduce conflict for ^ resolved as shift
+    ;               reduce using rule 21 (numexpr -> numexpr ^ numexpr .)
+    )               reduce using rule 21 (numexpr -> numexpr ^ numexpr .)
+    +               shift and go to state 43
+    -               shift and go to state 44
+    *               shift and go to state 45
+    /               shift and go to state 46
+    ^               shift and go to state 47
+
+  ! +               [ reduce using rule 21 (numexpr -> numexpr ^ numexpr .) ]
+  ! -               [ reduce using rule 21 (numexpr -> numexpr ^ numexpr .) ]
+  ! *               [ reduce using rule 21 (numexpr -> numexpr ^ numexpr .) ]
+  ! /               [ reduce using rule 21 (numexpr -> numexpr ^ numexpr .) ]
+  ! ^               [ reduce using rule 21 (numexpr -> numexpr ^ numexpr .) ]
+
+
+state 85
+
+    (27) boolexpr -> boolexpr AND boolexpr .
+    (27) boolexpr -> boolexpr . AND boolexpr
+    (28) boolexpr -> boolexpr . OR boolexpr
+
+  ! shift/reduce conflict for AND resolved as shift
+  ! shift/reduce conflict for OR resolved as shift
+    ;               reduce using rule 27 (boolexpr -> boolexpr AND boolexpr .)
+    )               reduce using rule 27 (boolexpr -> boolexpr AND boolexpr .)
+    AND             shift and go to state 48
+    OR              shift and go to state 49
+
+  ! AND             [ reduce using rule 27 (boolexpr -> boolexpr AND boolexpr .) ]
+  ! OR              [ reduce using rule 27 (boolexpr -> boolexpr AND boolexpr .) ]
+
+
+state 86
+
+    (28) boolexpr -> boolexpr OR boolexpr .
+    (27) boolexpr -> boolexpr . AND boolexpr
+    (28) boolexpr -> boolexpr . OR boolexpr
+
+  ! shift/reduce conflict for AND resolved as shift
+  ! shift/reduce conflict for OR resolved as shift
+    ;               reduce using rule 28 (boolexpr -> boolexpr OR boolexpr .)
+    )               reduce using rule 28 (boolexpr -> boolexpr OR boolexpr .)
+    AND             shift and go to state 48
+    OR              shift and go to state 49
+
+  ! AND             [ reduce using rule 28 (boolexpr -> boolexpr OR boolexpr .) ]
+  ! OR              [ reduce using rule 28 (boolexpr -> boolexpr OR boolexpr .) ]
+
+
+state 87
+
+    (63) forctrl -> FOR forcond braceb .
+
+    ID              reduce using rule 63 (forctrl -> FOR forcond braceb .)
+    IF              reduce using rule 63 (forctrl -> FOR forcond braceb .)
+    FOR             reduce using rule 63 (forctrl -> FOR forcond braceb .)
+    WHILE           reduce using rule 63 (forctrl -> FOR forcond braceb .)
+    DO              reduce using rule 63 (forctrl -> FOR forcond braceb .)
+    SCONST          reduce using rule 63 (forctrl -> FOR forcond braceb .)
+    (               reduce using rule 63 (forctrl -> FOR forcond braceb .)
+    INT             reduce using rule 63 (forctrl -> FOR forcond braceb .)
+    FLOAT           reduce using rule 63 (forctrl -> FOR forcond braceb .)
+    STRING          reduce using rule 63 (forctrl -> FOR forcond braceb .)
+    BOOLEAN         reduce using rule 63 (forctrl -> FOR forcond braceb .)
+    ICONST          reduce using rule 63 (forctrl -> FOR forcond braceb .)
+    FCONST          reduce using rule 63 (forctrl -> FOR forcond braceb .)
+    TRUE            reduce using rule 63 (forctrl -> FOR forcond braceb .)
+    FALSE           reduce using rule 63 (forctrl -> FOR forcond braceb .)
+    $end            reduce using rule 63 (forctrl -> FOR forcond braceb .)
+    }               reduce using rule 63 (forctrl -> FOR forcond braceb .)
+
+
+state 88
+
+    (64) forcond -> ( stmt . ; stmt ; stmt )
+
+    ;               shift and go to state 108
+
+
+state 89
+
+    (65) whilectrl -> WHILE boolblock braceb .
+
+    ID              reduce using rule 65 (whilectrl -> WHILE boolblock braceb .)
+    IF              reduce using rule 65 (whilectrl -> WHILE boolblock braceb .)
+    FOR             reduce using rule 65 (whilectrl -> WHILE boolblock braceb .)
+    WHILE           reduce using rule 65 (whilectrl -> WHILE boolblock braceb .)
+    DO              reduce using rule 65 (whilectrl -> WHILE boolblock braceb .)
+    SCONST          reduce using rule 65 (whilectrl -> WHILE boolblock braceb .)
+    (               reduce using rule 65 (whilectrl -> WHILE boolblock braceb .)
+    INT             reduce using rule 65 (whilectrl -> WHILE boolblock braceb .)
+    FLOAT           reduce using rule 65 (whilectrl -> WHILE boolblock braceb .)
+    STRING          reduce using rule 65 (whilectrl -> WHILE boolblock braceb .)
+    BOOLEAN         reduce using rule 65 (whilectrl -> WHILE boolblock braceb .)
+    ICONST          reduce using rule 65 (whilectrl -> WHILE boolblock braceb .)
+    FCONST          reduce using rule 65 (whilectrl -> WHILE boolblock braceb .)
+    TRUE            reduce using rule 65 (whilectrl -> WHILE boolblock braceb .)
+    FALSE           reduce using rule 65 (whilectrl -> WHILE boolblock braceb .)
+    $end            reduce using rule 65 (whilectrl -> WHILE boolblock braceb .)
+    }               reduce using rule 65 (whilectrl -> WHILE boolblock braceb .)
+
+
+state 90
+
+    (66) dowhilectrl -> DO braceb WHILE . boolblock ;
+    (58) boolblock -> . ( boolexpr )
+
+    (               shift and go to state 39
+
+    boolblock                      shift and go to state 109
+
+state 91
+
+    (59) braceb -> { block . }
+
+    }               shift and go to state 110
+
+
+state 92
+
+    (34) boolcomp -> number EQUAL number .
+
+    AND             reduce using rule 34 (boolcomp -> number EQUAL number .)
+    OR              reduce using rule 34 (boolcomp -> number EQUAL number .)
+    ;               reduce using rule 34 (boolcomp -> number EQUAL number .)
+    )               reduce using rule 34 (boolcomp -> number EQUAL number .)
+
+
+state 93
+
+    (35) boolcomp -> number NEQUAL number .
+
+    AND             reduce using rule 35 (boolcomp -> number NEQUAL number .)
+    OR              reduce using rule 35 (boolcomp -> number NEQUAL number .)
+    ;               reduce using rule 35 (boolcomp -> number NEQUAL number .)
+    )               reduce using rule 35 (boolcomp -> number NEQUAL number .)
+
+
+state 94
+
+    (36) boolcomp -> number > number .
+
+    AND             reduce using rule 36 (boolcomp -> number > number .)
+    OR              reduce using rule 36 (boolcomp -> number > number .)
+    ;               reduce using rule 36 (boolcomp -> number > number .)
+    )               reduce using rule 36 (boolcomp -> number > number .)
+
+
+state 95
+
+    (37) boolcomp -> number < number .
+
+    AND             reduce using rule 37 (boolcomp -> number < number .)
+    OR              reduce using rule 37 (boolcomp -> number < number .)
+    ;               reduce using rule 37 (boolcomp -> number < number .)
+    )               reduce using rule 37 (boolcomp -> number < number .)
+
+
+state 96
+
+    (38) boolcomp -> number LEQT number .
+
+    AND             reduce using rule 38 (boolcomp -> number LEQT number .)
+    OR              reduce using rule 38 (boolcomp -> number LEQT number .)
+    ;               reduce using rule 38 (boolcomp -> number LEQT number .)
+    )               reduce using rule 38 (boolcomp -> number LEQT number .)
+
+
+state 97
+
+    (39) boolcomp -> number MEQT number .
+
+    AND             reduce using rule 39 (boolcomp -> number MEQT number .)
+    OR              reduce using rule 39 (boolcomp -> number MEQT number .)
+    ;               reduce using rule 39 (boolcomp -> number MEQT number .)
+    )               reduce using rule 39 (boolcomp -> number MEQT number .)
+
+
+state 98
+
+    (29) boolexpr -> ( boolexpr AND . boolexpr )
+    (27) boolexpr -> boolexpr AND . boolexpr
+    (25) boolexpr -> . boolval
+    (26) boolexpr -> . boolcomp
+    (27) boolexpr -> . boolexpr AND boolexpr
+    (28) boolexpr -> . boolexpr OR boolexpr
+    (29) boolexpr -> . ( boolexpr AND boolexpr )
+    (30) boolexpr -> . ( boolexpr OR boolexpr )
+    (31) boolval -> . ID
+    (32) boolval -> . TRUE
+    (33) boolval -> . FALSE
+    (34) boolcomp -> . number EQUAL number
+    (35) boolcomp -> . number NEQUAL number
+    (36) boolcomp -> . number > number
+    (37) boolcomp -> . number < number
+    (38) boolcomp -> . number LEQT number
+    (39) boolcomp -> . number MEQT number
+    (40) boolcomp -> . strexpr EQUAL strexpr
+    (41) boolcomp -> . strexpr NEQUAL strexpr
+    (22) number -> . ICONST
+    (23) number -> . FCONST
+    (24) number -> . ID
+    (13) strexpr -> . strexpr + strexpr
+    (14) strexpr -> . SCONST
+    (15) strexpr -> . ID
+
+    (               shift and go to state 25
+    ID              shift and go to state 62
+    TRUE            shift and go to state 32
+    FALSE           shift and go to state 33
+    ICONST          shift and go to state 30
+    FCONST          shift and go to state 31
+    SCONST          shift and go to state 21
+
+    boolexpr                       shift and go to state 111
+    boolval                        shift and go to state 23
+    boolcomp                       shift and go to state 24
+    number                         shift and go to state 63
+    strexpr                        shift and go to state 64
+
+state 99
+
+    (30) boolexpr -> ( boolexpr OR . boolexpr )
+    (28) boolexpr -> boolexpr OR . boolexpr
+    (25) boolexpr -> . boolval
+    (26) boolexpr -> . boolcomp
+    (27) boolexpr -> . boolexpr AND boolexpr
+    (28) boolexpr -> . boolexpr OR boolexpr
+    (29) boolexpr -> . ( boolexpr AND boolexpr )
+    (30) boolexpr -> . ( boolexpr OR boolexpr )
+    (31) boolval -> . ID
+    (32) boolval -> . TRUE
+    (33) boolval -> . FALSE
+    (34) boolcomp -> . number EQUAL number
+    (35) boolcomp -> . number NEQUAL number
+    (36) boolcomp -> . number > number
+    (37) boolcomp -> . number < number
+    (38) boolcomp -> . number LEQT number
+    (39) boolcomp -> . number MEQT number
+    (40) boolcomp -> . strexpr EQUAL strexpr
+    (41) boolcomp -> . strexpr NEQUAL strexpr
+    (22) number -> . ICONST
+    (23) number -> . FCONST
+    (24) number -> . ID
+    (13) strexpr -> . strexpr + strexpr
+    (14) strexpr -> . SCONST
+    (15) strexpr -> . ID
+
+    (               shift and go to state 25
+    ID              shift and go to state 62
+    TRUE            shift and go to state 32
+    FALSE           shift and go to state 33
+    ICONST          shift and go to state 30
+    FCONST          shift and go to state 31
+    SCONST          shift and go to state 21
+
+    boolexpr                       shift and go to state 112
+    boolval                        shift and go to state 23
+    boolcomp                       shift and go to state 24
+    number                         shift and go to state 63
+    strexpr                        shift and go to state 64
+
+state 100
+
+    (47) numdecl -> INT ID = . numexpr
+    (16) numexpr -> . number
+    (17) numexpr -> . numexpr + numexpr
+    (18) numexpr -> . numexpr - numexpr
+    (19) numexpr -> . numexpr * numexpr
+    (20) numexpr -> . numexpr / numexpr
+    (21) numexpr -> . numexpr ^ numexpr
+    (22) number -> . ICONST
+    (23) number -> . FCONST
+    (24) number -> . ID
+
+    ICONST          shift and go to state 30
+    FCONST          shift and go to state 31
+    ID              shift and go to state 80
+
+    numexpr                        shift and go to state 113
+    number                         shift and go to state 79
+
+state 101
+
+    (48) numdecl -> FLOAT ID = . numexpr
+    (16) numexpr -> . number
+    (17) numexpr -> . numexpr + numexpr
+    (18) numexpr -> . numexpr - numexpr
+    (19) numexpr -> . numexpr * numexpr
+    (20) numexpr -> . numexpr / numexpr
+    (21) numexpr -> . numexpr ^ numexpr
+    (22) number -> . ICONST
+    (23) number -> . FCONST
+    (24) number -> . ID
+
+    ICONST          shift and go to state 30
+    FCONST          shift and go to state 31
+    ID              shift and go to state 80
+
+    numexpr                        shift and go to state 114
+    number                         shift and go to state 79
+
+state 102
+
+    (50) strdecl -> STRING ID = . strexpr
+    (13) strexpr -> . strexpr + strexpr
+    (14) strexpr -> . SCONST
+    (15) strexpr -> . ID
+
+    SCONST          shift and go to state 21
+    ID              shift and go to state 75
+
+    strexpr                        shift and go to state 115
+
+state 103
+
+    (52) booldecl -> BOOLEAN ID = . boolexpr
+    (25) boolexpr -> . boolval
+    (26) boolexpr -> . boolcomp
+    (27) boolexpr -> . boolexpr AND boolexpr
+    (28) boolexpr -> . boolexpr OR boolexpr
+    (29) boolexpr -> . ( boolexpr AND boolexpr )
+    (30) boolexpr -> . ( boolexpr OR boolexpr )
+    (31) boolval -> . ID
+    (32) boolval -> . TRUE
+    (33) boolval -> . FALSE
+    (34) boolcomp -> . number EQUAL number
+    (35) boolcomp -> . number NEQUAL number
+    (36) boolcomp -> . number > number
+    (37) boolcomp -> . number < number
+    (38) boolcomp -> . number LEQT number
+    (39) boolcomp -> . number MEQT number
+    (40) boolcomp -> . strexpr EQUAL strexpr
+    (41) boolcomp -> . strexpr NEQUAL strexpr
+    (22) number -> . ICONST
+    (23) number -> . FCONST
+    (24) number -> . ID
+    (13) strexpr -> . strexpr + strexpr
+    (14) strexpr -> . SCONST
+    (15) strexpr -> . ID
+
+    (               shift and go to state 25
+    ID              shift and go to state 62
+    TRUE            shift and go to state 32
+    FALSE           shift and go to state 33
+    ICONST          shift and go to state 30
+    FCONST          shift and go to state 31
+    SCONST          shift and go to state 21
+
+    boolexpr                       shift and go to state 116
+    boolval                        shift and go to state 23
+    boolcomp                       shift and go to state 24
+    number                         shift and go to state 63
+    strexpr                        shift and go to state 64
+
+state 104
+
+    (54) cond -> IF boolblock braceb ELSE . braceb
+    (59) braceb -> . { block }
+
+    {               shift and go to state 54
+
+    braceb                         shift and go to state 117
+
+state 105
+
+    (55) cond -> IF boolblock braceb condelif . ELSE braceb
+
+    ELSE            shift and go to state 118
+
+
+state 106
+
+    (56) condelif -> ELIF . boolblock braceb
+    (57) condelif -> ELIF . boolblock braceb condelif
+    (58) boolblock -> . ( boolexpr )
+
+    (               shift and go to state 39
+
+    boolblock                      shift and go to state 119
+
+state 107
+
+    (58) boolblock -> ( boolexpr ) .
+
+    {               reduce using rule 58 (boolblock -> ( boolexpr ) .)
+    ;               reduce using rule 58 (boolblock -> ( boolexpr ) .)
+
+
+state 108
+
+    (64) forcond -> ( stmt ; . stmt ; stmt )
+    (7) stmt -> . ID = expr
+    (8) stmt -> . expr
+    (9) stmt -> . decl
+    (10) expr -> . strexpr
+    (11) expr -> . numexpr
+    (12) expr -> . boolexpr
+    (42) decl -> . numdecl
+    (43) decl -> . strdecl
+    (44) decl -> . booldecl
+    (13) strexpr -> . strexpr + strexpr
+    (14) strexpr -> . SCONST
+    (15) strexpr -> . ID
+    (16) numexpr -> . number
+    (17) numexpr -> . numexpr + numexpr
+    (18) numexpr -> . numexpr - numexpr
+    (19) numexpr -> . numexpr * numexpr
+    (20) numexpr -> . numexpr / numexpr
+    (21) numexpr -> . numexpr ^ numexpr
+    (25) boolexpr -> . boolval
+    (26) boolexpr -> . boolcomp
+    (27) boolexpr -> . boolexpr AND boolexpr
+    (28) boolexpr -> . boolexpr OR boolexpr
+    (29) boolexpr -> . ( boolexpr AND boolexpr )
+    (30) boolexpr -> . ( boolexpr OR boolexpr )
+    (45) numdecl -> . INT ID
+    (46) numdecl -> . FLOAT ID
+    (47) numdecl -> . INT ID = numexpr
+    (48) numdecl -> . FLOAT ID = numexpr
+    (49) strdecl -> . STRING ID
+    (50) strdecl -> . STRING ID = strexpr
+    (51) booldecl -> . BOOLEAN ID
+    (52) booldecl -> . BOOLEAN ID = boolexpr
+    (22) number -> . ICONST
+    (23) number -> . FCONST
+    (24) number -> . ID
+    (31) boolval -> . ID
+    (32) boolval -> . TRUE
+    (33) boolval -> . FALSE
+    (34) boolcomp -> . number EQUAL number
+    (35) boolcomp -> . number NEQUAL number
+    (36) boolcomp -> . number > number
+    (37) boolcomp -> . number < number
+    (38) boolcomp -> . number LEQT number
+    (39) boolcomp -> . number MEQT number
+    (40) boolcomp -> . strexpr EQUAL strexpr
+    (41) boolcomp -> . strexpr NEQUAL strexpr
+
+    ID              shift and go to state 5
+    SCONST          shift and go to state 21
+    (               shift and go to state 25
+    INT             shift and go to state 26
+    FLOAT           shift and go to state 27
+    STRING          shift and go to state 28
+    BOOLEAN         shift and go to state 29
+    ICONST          shift and go to state 30
+    FCONST          shift and go to state 31
+    TRUE            shift and go to state 32
+    FALSE           shift and go to state 33
+
+    stmt                           shift and go to state 120
+    expr                           shift and go to state 6
+    decl                           shift and go to state 7
+    strexpr                        shift and go to state 12
+    numexpr                        shift and go to state 13
+    boolexpr                       shift and go to state 14
+    numdecl                        shift and go to state 15
+    strdecl                        shift and go to state 16
+    booldecl                       shift and go to state 17
+    number                         shift and go to state 22
+    boolval                        shift and go to state 23
+    boolcomp                       shift and go to state 24
+
+state 109
+
+    (66) dowhilectrl -> DO braceb WHILE boolblock . ;
+
+    ;               shift and go to state 121
+
+
+state 110
+
+    (59) braceb -> { block } .
+
+    WHILE           reduce using rule 59 (braceb -> { block } .)
+    ELSE            reduce using rule 59 (braceb -> { block } .)
+    ELIF            reduce using rule 59 (braceb -> { block } .)
+    ID              reduce using rule 59 (braceb -> { block } .)
+    IF              reduce using rule 59 (braceb -> { block } .)
+    FOR             reduce using rule 59 (braceb -> { block } .)
+    DO              reduce using rule 59 (braceb -> { block } .)
+    SCONST          reduce using rule 59 (braceb -> { block } .)
+    (               reduce using rule 59 (braceb -> { block } .)
+    INT             reduce using rule 59 (braceb -> { block } .)
+    FLOAT           reduce using rule 59 (braceb -> { block } .)
+    STRING          reduce using rule 59 (braceb -> { block } .)
+    BOOLEAN         reduce using rule 59 (braceb -> { block } .)
+    ICONST          reduce using rule 59 (braceb -> { block } .)
+    FCONST          reduce using rule 59 (braceb -> { block } .)
+    TRUE            reduce using rule 59 (braceb -> { block } .)
+    FALSE           reduce using rule 59 (braceb -> { block } .)
+    $end            reduce using rule 59 (braceb -> { block } .)
+    }               reduce using rule 59 (braceb -> { block } .)
+
+
+state 111
+
+    (29) boolexpr -> ( boolexpr AND boolexpr . )
+    (27) boolexpr -> boolexpr AND boolexpr .
+    (27) boolexpr -> boolexpr . AND boolexpr
+    (28) boolexpr -> boolexpr . OR boolexpr
+
+  ! shift/reduce conflict for AND resolved as shift
+  ! shift/reduce conflict for OR resolved as shift
+    )               shift and go to state 122
+    AND             shift and go to state 48
+    OR              shift and go to state 49
+
+  ! AND             [ reduce using rule 27 (boolexpr -> boolexpr AND boolexpr .) ]
+  ! OR              [ reduce using rule 27 (boolexpr -> boolexpr AND boolexpr .) ]
+
+
+state 112
+
+    (30) boolexpr -> ( boolexpr OR boolexpr . )
+    (28) boolexpr -> boolexpr OR boolexpr .
+    (27) boolexpr -> boolexpr . AND boolexpr
+    (28) boolexpr -> boolexpr . OR boolexpr
+
+  ! shift/reduce conflict for AND resolved as shift
+  ! shift/reduce conflict for OR resolved as shift
+    )               shift and go to state 123
+    AND             shift and go to state 48
+    OR              shift and go to state 49
+
+  ! AND             [ reduce using rule 28 (boolexpr -> boolexpr OR boolexpr .) ]
+  ! OR              [ reduce using rule 28 (boolexpr -> boolexpr OR boolexpr .) ]
+
+
+state 113
+
+    (47) numdecl -> INT ID = numexpr .
+    (17) numexpr -> numexpr . + numexpr
+    (18) numexpr -> numexpr . - numexpr
+    (19) numexpr -> numexpr . * numexpr
+    (20) numexpr -> numexpr . / numexpr
+    (21) numexpr -> numexpr . ^ numexpr
+
+    ;               reduce using rule 47 (numdecl -> INT ID = numexpr .)
+    )               reduce using rule 47 (numdecl -> INT ID = numexpr .)
+    +               shift and go to state 43
+    -               shift and go to state 44
+    *               shift and go to state 45
+    /               shift and go to state 46
+    ^               shift and go to state 47
+
+
+state 114
+
+    (48) numdecl -> FLOAT ID = numexpr .
+    (17) numexpr -> numexpr . + numexpr
+    (18) numexpr -> numexpr . - numexpr
+    (19) numexpr -> numexpr . * numexpr
+    (20) numexpr -> numexpr . / numexpr
+    (21) numexpr -> numexpr . ^ numexpr
+
+    ;               reduce using rule 48 (numdecl -> FLOAT ID = numexpr .)
+    )               reduce using rule 48 (numdecl -> FLOAT ID = numexpr .)
+    +               shift and go to state 43
+    -               shift and go to state 44
+    *               shift and go to state 45
+    /               shift and go to state 46
+    ^               shift and go to state 47
+
+
+state 115
+
+    (50) strdecl -> STRING ID = strexpr .
+    (13) strexpr -> strexpr . + strexpr
+
+    ;               reduce using rule 50 (strdecl -> STRING ID = strexpr .)
+    )               reduce using rule 50 (strdecl -> STRING ID = strexpr .)
+    +               shift and go to state 40
+
+
+state 116
+
+    (52) booldecl -> BOOLEAN ID = boolexpr .
+    (27) boolexpr -> boolexpr . AND boolexpr
+    (28) boolexpr -> boolexpr . OR boolexpr
+
+    ;               reduce using rule 52 (booldecl -> BOOLEAN ID = boolexpr .)
+    )               reduce using rule 52 (booldecl -> BOOLEAN ID = boolexpr .)
+    AND             shift and go to state 48
+    OR              shift and go to state 49
+
+
+state 117
+
+    (54) cond -> IF boolblock braceb ELSE braceb .
+
+    ID              reduce using rule 54 (cond -> IF boolblock braceb ELSE braceb .)
+    IF              reduce using rule 54 (cond -> IF boolblock braceb ELSE braceb .)
+    FOR             reduce using rule 54 (cond -> IF boolblock braceb ELSE braceb .)
+    WHILE           reduce using rule 54 (cond -> IF boolblock braceb ELSE braceb .)
+    DO              reduce using rule 54 (cond -> IF boolblock braceb ELSE braceb .)
+    SCONST          reduce using rule 54 (cond -> IF boolblock braceb ELSE braceb .)
+    (               reduce using rule 54 (cond -> IF boolblock braceb ELSE braceb .)
+    INT             reduce using rule 54 (cond -> IF boolblock braceb ELSE braceb .)
+    FLOAT           reduce using rule 54 (cond -> IF boolblock braceb ELSE braceb .)
+    STRING          reduce using rule 54 (cond -> IF boolblock braceb ELSE braceb .)
+    BOOLEAN         reduce using rule 54 (cond -> IF boolblock braceb ELSE braceb .)
+    ICONST          reduce using rule 54 (cond -> IF boolblock braceb ELSE braceb .)
+    FCONST          reduce using rule 54 (cond -> IF boolblock braceb ELSE braceb .)
+    TRUE            reduce using rule 54 (cond -> IF boolblock braceb ELSE braceb .)
+    FALSE           reduce using rule 54 (cond -> IF boolblock braceb ELSE braceb .)
+    $end            reduce using rule 54 (cond -> IF boolblock braceb ELSE braceb .)
+    }               reduce using rule 54 (cond -> IF boolblock braceb ELSE braceb .)
+
+
+state 118
+
+    (55) cond -> IF boolblock braceb condelif ELSE . braceb
+    (59) braceb -> . { block }
+
+    {               shift and go to state 54
+
+    braceb                         shift and go to state 124
+
+state 119
+
+    (56) condelif -> ELIF boolblock . braceb
+    (57) condelif -> ELIF boolblock . braceb condelif
+    (59) braceb -> . { block }
+
+    {               shift and go to state 54
+
+    braceb                         shift and go to state 125
+
+state 120
+
+    (64) forcond -> ( stmt ; stmt . ; stmt )
+
+    ;               shift and go to state 126
+
+
+state 121
+
+    (66) dowhilectrl -> DO braceb WHILE boolblock ; .
+
+    ID              reduce using rule 66 (dowhilectrl -> DO braceb WHILE boolblock ; .)
+    IF              reduce using rule 66 (dowhilectrl -> DO braceb WHILE boolblock ; .)
+    FOR             reduce using rule 66 (dowhilectrl -> DO braceb WHILE boolblock ; .)
+    WHILE           reduce using rule 66 (dowhilectrl -> DO braceb WHILE boolblock ; .)
+    DO              reduce using rule 66 (dowhilectrl -> DO braceb WHILE boolblock ; .)
+    SCONST          reduce using rule 66 (dowhilectrl -> DO braceb WHILE boolblock ; .)
+    (               reduce using rule 66 (dowhilectrl -> DO braceb WHILE boolblock ; .)
+    INT             reduce using rule 66 (dowhilectrl -> DO braceb WHILE boolblock ; .)
+    FLOAT           reduce using rule 66 (dowhilectrl -> DO braceb WHILE boolblock ; .)
+    STRING          reduce using rule 66 (dowhilectrl -> DO braceb WHILE boolblock ; .)
+    BOOLEAN         reduce using rule 66 (dowhilectrl -> DO braceb WHILE boolblock ; .)
+    ICONST          reduce using rule 66 (dowhilectrl -> DO braceb WHILE boolblock ; .)
+    FCONST          reduce using rule 66 (dowhilectrl -> DO braceb WHILE boolblock ; .)
+    TRUE            reduce using rule 66 (dowhilectrl -> DO braceb WHILE boolblock ; .)
+    FALSE           reduce using rule 66 (dowhilectrl -> DO braceb WHILE boolblock ; .)
+    $end            reduce using rule 66 (dowhilectrl -> DO braceb WHILE boolblock ; .)
+    }               reduce using rule 66 (dowhilectrl -> DO braceb WHILE boolblock ; .)
+
+
+state 122
+
+    (29) boolexpr -> ( boolexpr AND boolexpr ) .
+
+    AND             reduce using rule 29 (boolexpr -> ( boolexpr AND boolexpr ) .)
+    OR              reduce using rule 29 (boolexpr -> ( boolexpr AND boolexpr ) .)
+    ;               reduce using rule 29 (boolexpr -> ( boolexpr AND boolexpr ) .)
+    )               reduce using rule 29 (boolexpr -> ( boolexpr AND boolexpr ) .)
+
+
+state 123
+
+    (30) boolexpr -> ( boolexpr OR boolexpr ) .
+
+    AND             reduce using rule 30 (boolexpr -> ( boolexpr OR boolexpr ) .)
+    OR              reduce using rule 30 (boolexpr -> ( boolexpr OR boolexpr ) .)
+    ;               reduce using rule 30 (boolexpr -> ( boolexpr OR boolexpr ) .)
+    )               reduce using rule 30 (boolexpr -> ( boolexpr OR boolexpr ) .)
+
+
+state 124
+
+    (55) cond -> IF boolblock braceb condelif ELSE braceb .
+
+    ID              reduce using rule 55 (cond -> IF boolblock braceb condelif ELSE braceb .)
+    IF              reduce using rule 55 (cond -> IF boolblock braceb condelif ELSE braceb .)
+    FOR             reduce using rule 55 (cond -> IF boolblock braceb condelif ELSE braceb .)
+    WHILE           reduce using rule 55 (cond -> IF boolblock braceb condelif ELSE braceb .)
+    DO              reduce using rule 55 (cond -> IF boolblock braceb condelif ELSE braceb .)
+    SCONST          reduce using rule 55 (cond -> IF boolblock braceb condelif ELSE braceb .)
+    (               reduce using rule 55 (cond -> IF boolblock braceb condelif ELSE braceb .)
+    INT             reduce using rule 55 (cond -> IF boolblock braceb condelif ELSE braceb .)
+    FLOAT           reduce using rule 55 (cond -> IF boolblock braceb condelif ELSE braceb .)
+    STRING          reduce using rule 55 (cond -> IF boolblock braceb condelif ELSE braceb .)
+    BOOLEAN         reduce using rule 55 (cond -> IF boolblock braceb condelif ELSE braceb .)
+    ICONST          reduce using rule 55 (cond -> IF boolblock braceb condelif ELSE braceb .)
+    FCONST          reduce using rule 55 (cond -> IF boolblock braceb condelif ELSE braceb .)
+    TRUE            reduce using rule 55 (cond -> IF boolblock braceb condelif ELSE braceb .)
+    FALSE           reduce using rule 55 (cond -> IF boolblock braceb condelif ELSE braceb .)
+    $end            reduce using rule 55 (cond -> IF boolblock braceb condelif ELSE braceb .)
+    }               reduce using rule 55 (cond -> IF boolblock braceb condelif ELSE braceb .)
+
+
+state 125
+
+    (56) condelif -> ELIF boolblock braceb .
+    (57) condelif -> ELIF boolblock braceb . condelif
+    (56) condelif -> . ELIF boolblock braceb
+    (57) condelif -> . ELIF boolblock braceb condelif
+
+    ELSE            reduce using rule 56 (condelif -> ELIF boolblock braceb .)
+    ELIF            shift and go to state 106
+
+    condelif                       shift and go to state 127
+
+state 126
+
+    (64) forcond -> ( stmt ; stmt ; . stmt )
+    (7) stmt -> . ID = expr
+    (8) stmt -> . expr
+    (9) stmt -> . decl
+    (10) expr -> . strexpr
+    (11) expr -> . numexpr
+    (12) expr -> . boolexpr
+    (42) decl -> . numdecl
+    (43) decl -> . strdecl
+    (44) decl -> . booldecl
+    (13) strexpr -> . strexpr + strexpr
+    (14) strexpr -> . SCONST
+    (15) strexpr -> . ID
+    (16) numexpr -> . number
+    (17) numexpr -> . numexpr + numexpr
+    (18) numexpr -> . numexpr - numexpr
+    (19) numexpr -> . numexpr * numexpr
+    (20) numexpr -> . numexpr / numexpr
+    (21) numexpr -> . numexpr ^ numexpr
+    (25) boolexpr -> . boolval
+    (26) boolexpr -> . boolcomp
+    (27) boolexpr -> . boolexpr AND boolexpr
+    (28) boolexpr -> . boolexpr OR boolexpr
+    (29) boolexpr -> . ( boolexpr AND boolexpr )
+    (30) boolexpr -> . ( boolexpr OR boolexpr )
+    (45) numdecl -> . INT ID
+    (46) numdecl -> . FLOAT ID
+    (47) numdecl -> . INT ID = numexpr
+    (48) numdecl -> . FLOAT ID = numexpr
+    (49) strdecl -> . STRING ID
+    (50) strdecl -> . STRING ID = strexpr
+    (51) booldecl -> . BOOLEAN ID
+    (52) booldecl -> . BOOLEAN ID = boolexpr
+    (22) number -> . ICONST
+    (23) number -> . FCONST
+    (24) number -> . ID
+    (31) boolval -> . ID
+    (32) boolval -> . TRUE
+    (33) boolval -> . FALSE
+    (34) boolcomp -> . number EQUAL number
+    (35) boolcomp -> . number NEQUAL number
+    (36) boolcomp -> . number > number
+    (37) boolcomp -> . number < number
+    (38) boolcomp -> . number LEQT number
+    (39) boolcomp -> . number MEQT number
+    (40) boolcomp -> . strexpr EQUAL strexpr
+    (41) boolcomp -> . strexpr NEQUAL strexpr
+
+    ID              shift and go to state 5
+    SCONST          shift and go to state 21
+    (               shift and go to state 25
+    INT             shift and go to state 26
+    FLOAT           shift and go to state 27
+    STRING          shift and go to state 28
+    BOOLEAN         shift and go to state 29
+    ICONST          shift and go to state 30
+    FCONST          shift and go to state 31
+    TRUE            shift and go to state 32
+    FALSE           shift and go to state 33
+
+    stmt                           shift and go to state 128
+    expr                           shift and go to state 6
+    decl                           shift and go to state 7
+    strexpr                        shift and go to state 12
+    numexpr                        shift and go to state 13
+    boolexpr                       shift and go to state 14
+    numdecl                        shift and go to state 15
+    strdecl                        shift and go to state 16
+    booldecl                       shift and go to state 17
+    number                         shift and go to state 22
+    boolval                        shift and go to state 23
+    boolcomp                       shift and go to state 24
+
+state 127
+
+    (57) condelif -> ELIF boolblock braceb condelif .
+
+    ELSE            reduce using rule 57 (condelif -> ELIF boolblock braceb condelif .)
+
+
+state 128
+
+    (64) forcond -> ( stmt ; stmt ; stmt . )
+
+    )               shift and go to state 129
+
+
+state 129
+
+    (64) forcond -> ( stmt ; stmt ; stmt ) .
+
+    {               reduce using rule 64 (forcond -> ( stmt ; stmt ; stmt ) .)
+
+WARNING: 
+WARNING: Conflicts:
+WARNING: 
+WARNING: shift/reduce conflict for + in state 74 resolved as shift
+WARNING: shift/reduce conflict for + in state 78 resolved as shift
+WARNING: shift/reduce conflict for - in state 78 resolved as shift
+WARNING: shift/reduce conflict for * in state 78 resolved as shift
+WARNING: shift/reduce conflict for / in state 78 resolved as shift
+WARNING: shift/reduce conflict for ^ in state 78 resolved as shift
+WARNING: shift/reduce conflict for + in state 81 resolved as shift
+WARNING: shift/reduce conflict for - in state 81 resolved as shift
+WARNING: shift/reduce conflict for * in state 81 resolved as shift
+WARNING: shift/reduce conflict for / in state 81 resolved as shift
+WARNING: shift/reduce conflict for ^ in state 81 resolved as shift
+WARNING: shift/reduce conflict for + in state 82 resolved as shift
+WARNING: shift/reduce conflict for - in state 82 resolved as shift
+WARNING: shift/reduce conflict for * in state 82 resolved as shift
+WARNING: shift/reduce conflict for / in state 82 resolved as shift
+WARNING: shift/reduce conflict for ^ in state 82 resolved as shift
+WARNING: shift/reduce conflict for + in state 83 resolved as shift
+WARNING: shift/reduce conflict for - in state 83 resolved as shift
+WARNING: shift/reduce conflict for * in state 83 resolved as shift
+WARNING: shift/reduce conflict for / in state 83 resolved as shift
+WARNING: shift/reduce conflict for ^ in state 83 resolved as shift
+WARNING: shift/reduce conflict for + in state 84 resolved as shift
+WARNING: shift/reduce conflict for - in state 84 resolved as shift
+WARNING: shift/reduce conflict for * in state 84 resolved as shift
+WARNING: shift/reduce conflict for / in state 84 resolved as shift
+WARNING: shift/reduce conflict for ^ in state 84 resolved as shift
+WARNING: shift/reduce conflict for AND in state 85 resolved as shift
+WARNING: shift/reduce conflict for OR in state 85 resolved as shift
+WARNING: shift/reduce conflict for AND in state 86 resolved as shift
+WARNING: shift/reduce conflict for OR in state 86 resolved as shift
+WARNING: shift/reduce conflict for AND in state 111 resolved as shift
+WARNING: shift/reduce conflict for OR in state 111 resolved as shift
+WARNING: shift/reduce conflict for AND in state 112 resolved as shift
+WARNING: shift/reduce conflict for OR in state 112 resolved as shift
+WARNING: reduce/reduce conflict in state 5 resolved using rule (strexpr -> ID)
+WARNING: rejected rule (number -> ID) in state 5
+WARNING: reduce/reduce conflict in state 5 resolved using rule (strexpr -> ID)
+WARNING: rejected rule (boolval -> ID) in state 5
+WARNING: reduce/reduce conflict in state 62 resolved using rule (strexpr -> ID)
+WARNING: rejected rule (number -> ID) in state 62
+WARNING: reduce/reduce conflict in state 70 resolved using rule (strexpr -> ID)
+WARNING: rejected rule (number -> ID) in state 70
+WARNING: reduce/reduce conflict in state 70 resolved using rule (strexpr -> ID)
+WARNING: rejected rule (boolval -> ID) in state 70
